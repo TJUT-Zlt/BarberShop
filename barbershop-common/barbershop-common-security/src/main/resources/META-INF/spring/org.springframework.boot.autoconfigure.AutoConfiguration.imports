@@ -1,0 +1,5 @@
+com.barbershop.common.security.config.WebMvcConfig
+com.barbershop.common.security.service.TokenService
+com.barbershop.common.security.aspect.PreAuthorizeAspect
+com.barbershop.common.security.aspect.InnerAuthAspect
+com.barbershop.common.security.handler.GlobalExceptionHandler

@@ -1,0 +1,2 @@
+com.barbershop.common.log.service.AsyncLogService
+com.barbershop.common.log.aspect.LogAspect

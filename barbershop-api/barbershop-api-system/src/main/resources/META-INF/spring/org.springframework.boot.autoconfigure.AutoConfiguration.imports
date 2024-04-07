@@ -1,0 +1,3 @@
+com.barbershop.system.api.factory.RemoteUserFallbackFactory
+com.barbershop.system.api.factory.RemoteLogFallbackFactory
+com.barbershop.system.api.factory.RemoteFileFallbackFactory

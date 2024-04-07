@@ -1,0 +1,2 @@
+com.barbershop.common.redis.configure.RedisConfig
+com.barbershop.common.redis.service.RedisService

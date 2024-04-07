@@ -1,0 +1,3 @@
+# com.barbershop.common.swagger.config.SwaggerAutoConfiguration
+# com.barbershop.common.swagger.config.SwaggerWebConfiguration
+# com.barbershop.common.swagger.config.SwaggerBeanPostProcessor

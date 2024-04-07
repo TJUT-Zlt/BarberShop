@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.barbershop</groupId>
+        <artifactId>barbershop</artifactId>
+        <version>3.6.4</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>barbershop-common-log</module>
+        <module>barbershop-common-core</module>
+        <module>barbershop-common-redis</module>
+        <module>barbershop-common-seata</module>
+        <module>barbershop-common-swagger</module>
+        <module>barbershop-common-security</module>
+        <module>barbershop-common-datascope</module>
+        <module>barbershop-common-datasource</module>
+    </modules>
+
+    <artifactId>barbershop-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        barbershop-common通用模块
+    </description>
+
+</project>
