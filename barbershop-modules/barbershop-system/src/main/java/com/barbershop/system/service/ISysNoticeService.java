@@ -6,7 +6,7 @@ import com.barbershop.system.domain.SysNotice;
 /**
  * 公告 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysNoticeService
 {

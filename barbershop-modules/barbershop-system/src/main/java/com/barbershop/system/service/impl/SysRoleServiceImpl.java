@@ -28,7 +28,7 @@ import com.barbershop.system.service.ISysRoleService;
 /**
  * 角色 业务层处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService

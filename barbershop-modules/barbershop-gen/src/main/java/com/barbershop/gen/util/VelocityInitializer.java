@@ -7,7 +7,7 @@ import com.barbershop.common.core.constant.Constants;
 /**
  * VelocityEngine工厂
  * 
- * @author ruoyi
+ * @author abel
  */
 public class VelocityInitializer
 {

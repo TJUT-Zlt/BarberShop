@@ -14,7 +14,7 @@ import com.barbershop.system.api.domain.SysFile;
 /**
  * 文件请求处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 public class SysFileController

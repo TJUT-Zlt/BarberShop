@@ -6,7 +6,7 @@ import com.barbershop.system.domain.SysConfig;
 /**
  * 参数配置 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysConfigService
 {

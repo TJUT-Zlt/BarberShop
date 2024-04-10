@@ -5,7 +5,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * 分页数据
  * 
- * @author ruoyi
+ * @author abel
  */
 public class PageDomain
 {

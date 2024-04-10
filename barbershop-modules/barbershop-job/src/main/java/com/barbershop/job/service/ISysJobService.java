@@ -8,7 +8,7 @@ import com.barbershop.job.domain.SysJob;
 /**
  * 定时任务调度信息信息 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysJobService
 {

@@ -6,7 +6,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * sql操作工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SqlUtil
 {

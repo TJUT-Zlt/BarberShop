@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 任务调度通用常量
  * 
- * @author ruoyi
+ * @author abel
  */
 public class ScheduleConstants
 {

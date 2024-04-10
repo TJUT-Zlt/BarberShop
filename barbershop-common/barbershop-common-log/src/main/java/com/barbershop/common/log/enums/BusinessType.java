@@ -3,7 +3,7 @@ package com.barbershop.common.log.enums;
 /**
  * 业务操作类型
  * 
- * @author ruoyi
+ * @author abel
  */
 public enum BusinessType
 {

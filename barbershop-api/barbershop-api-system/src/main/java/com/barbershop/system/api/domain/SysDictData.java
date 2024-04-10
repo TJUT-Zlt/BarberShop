@@ -12,7 +12,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 字典数据表 sys_dict_data
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysDictData extends BaseEntity
 {

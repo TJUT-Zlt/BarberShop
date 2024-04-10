@@ -11,7 +11,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 业务表 gen_table
  * 
- * @author ruoyi
+ * @author abel
  */
 public class GenTable extends BaseEntity
 {

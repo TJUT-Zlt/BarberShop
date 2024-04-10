@@ -7,7 +7,7 @@ import com.barbershop.gen.domain.GenTable;
 /**
  * 业务 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface IGenTableService
 {

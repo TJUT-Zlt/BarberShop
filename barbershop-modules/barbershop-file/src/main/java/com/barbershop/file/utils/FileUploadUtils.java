@@ -19,7 +19,7 @@ import com.barbershop.common.core.utils.uuid.Seq;
 /**
  * 文件上传工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class FileUploadUtils
 {

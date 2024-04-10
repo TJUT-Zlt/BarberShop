@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 验证码错误异常类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class CaptchaException extends RuntimeException
 {

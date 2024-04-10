@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 服务名称
  * 
- * @author ruoyi
+ * @author abel
  */
 public class ServiceNameConstants
 {

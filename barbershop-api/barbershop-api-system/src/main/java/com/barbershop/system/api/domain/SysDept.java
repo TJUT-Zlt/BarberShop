@@ -13,7 +13,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 部门表 sys_dept
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysDept extends BaseEntity
 {

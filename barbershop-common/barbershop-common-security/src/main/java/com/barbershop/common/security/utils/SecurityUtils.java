@@ -12,7 +12,7 @@ import com.barbershop.system.api.model.LoginUser;
 /**
  * 权限获取工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SecurityUtils
 {

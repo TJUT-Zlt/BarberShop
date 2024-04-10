@@ -12,7 +12,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 菜单权限表 sys_menu
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysMenu extends BaseEntity
 {

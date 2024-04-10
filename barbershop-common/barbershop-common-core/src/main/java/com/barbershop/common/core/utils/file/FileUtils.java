@@ -16,7 +16,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * 文件处理工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class FileUtils
 {

@@ -26,7 +26,7 @@ import com.barbershop.system.service.ISysLogininforService;
 /**
  * 系统访问记录
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/logininfor")

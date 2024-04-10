@@ -21,7 +21,7 @@ import com.barbershop.system.service.ISysDictTypeService;
 /**
  * 字典 业务层处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService

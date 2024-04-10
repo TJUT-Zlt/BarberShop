@@ -48,10 +48,10 @@
               @keyup.enter.native="handleQuery"
             />
           </el-form-item>
-          <el-form-item label="状态" prop="status">
+          <el-form-item label="账号状态" prop="status">
             <el-select
               v-model="queryParams.status"
-              placeholder="用户状态"
+              placeholder="账号状态"
               clearable
               style="width: 240px"
             >
@@ -143,7 +143,7 @@
           <el-table-column label="用户昵称" align="center" key="nickName" prop="nickName" v-if="columns[2].visible" :show-overflow-tooltip="true" />
           <el-table-column label="部门" align="center" key="deptName" prop="dept.deptName" v-if="columns[3].visible" :show-overflow-tooltip="true" />
           <el-table-column label="手机号码" align="center" key="phonenumber" prop="phonenumber" v-if="columns[4].visible" width="120" />
-          <el-table-column label="状态" align="center" key="status" v-if="columns[5].visible">
+          <el-table-column label="账号状态" align="center" key="status" v-if="columns[5].visible">
             <template slot-scope="scope">
               <el-switch
                 v-model="scope.row.status"
@@ -158,6 +158,44 @@
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
           </el-table-column>
+
+          <!-- 自定义内容 开始-->
+          <el-table-column label="生日" prop="birthday"  align="center" v-if="columns[6].visible" width="160">
+            <template slot-scope="scope">
+              <span>{{ parseTime(scope.row.birthday, '{y}-{m}-{d}') }}</span>
+            </template>
+          </el-table-column>
+
+          <el-table-column label="基本工资" key="salary" prop="salary" align="center" />
+
+          <el-table-column label="提成" key="commission" prop="commission" align="center" />
+
+          <!-- 字典类型数据显示 -->
+          <el-table-column  label="员工状态" prop="todayStatus" align="center"  width="80">
+            <template slot-scope="scope">
+              <dict-tag :options="dict.type.sys_user_status" :value="scope.row.todayStatus"/>
+            </template>
+          </el-table-column>
+          <!-- 字典类型数据显示 -->
+          <el-table-column label="性别" prop="sex" align="center"  width="80">
+            <template slot-scope="scope">
+              <dict-tag :options="dict.type.sys_user_sex" :value="scope.row.sex"/>
+            </template>
+          </el-table-column>
+
+          <!-- <el-table-item label="岗位">
+            <el-select v-model="form.postIds" multiple placeholder="请选择岗位">
+              <el-option
+                v-for="item in postOptions"
+                :key="item.postId"
+                :label="item.postName"
+                :value="item.postId"
+                :disabled="item.status == 1"
+              ></el-option>
+            </el-select>
+          </el-table-item> -->
+           <!-- 自定义内容 结束-->
+
           <el-table-column
             label="操作"
             align="center"
@@ -255,7 +293,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="状态">
+            <el-form-item label="账号状态">
               <el-radio-group v-model="form.status">
                 <el-radio
                   v-for="dict in dict.type.sys_normal_disable"
@@ -301,6 +339,48 @@
             </el-form-item>
           </el-col>
         </el-row>
+
+        <!-- 自定义内容 开始 -->
+        <el-form-item label="生日" prop="birthday">
+          <el-date-picker clearable
+            v-model="form.birthday"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="请选择生日">
+          </el-date-picker>
+        </el-form-item>
+
+        <el-row>
+
+          <el-col :span="12">
+            <el-form-item label="基本工资" prop="salary">
+              <el-input v-model="form.salary" placeholder="请输入基本工资" />
+            </el-form-item>
+         </el-col>
+
+         <el-col :span="12">
+          <el-form-item label="提成" prop="commission">
+            <el-input v-model="form.commission" placeholder="请输入提成" />
+          </el-form-item>
+        </el-col>
+
+       </el-row>
+
+       <el-col :span="12">
+            <el-form-item label="员工状态">
+              <el-select v-model="form.todayStatus" placeholder="请选择员工状态">
+                <el-option
+                  v-for="dict in dict.type.sys_user_status"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+        </el-col>
+        <!-- 自定义内容 结束   -->
+
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -348,7 +428,7 @@ import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
 export default {
   name: "User",
-  dicts: ['sys_normal_disable', 'sys_user_sex'],
+  dicts: ['sys_normal_disable', 'sys_user_sex' ,'sys_user_status'],
   components: { Treeselect },
   data() {
     return {
@@ -419,8 +499,15 @@ export default {
         { key: 2, label: `用户昵称`, visible: true },
         { key: 3, label: `部门`, visible: true },
         { key: 4, label: `手机号码`, visible: true },
-        { key: 5, label: `状态`, visible: true },
-        { key: 6, label: `创建时间`, visible: true }
+        { key: 5, label: `账号状态`, visible: true },
+        { key: 6, label: `创建时间`, visible: true },
+        // 自定义内容 开始
+        { key: 7, label: `生日`, visible: true },
+        { key: 8, label: `基本工资`, visible: true },
+        { key: 9, label: `提成`, visible: true },
+        { key: 10, label: `员工状态`, visible: true },
+        { key: 11, label: `性别`, visible: true },
+        // 自定义内容 结束
       ],
       // 表单校验
       rules: {
@@ -523,7 +610,11 @@ export default {
         status: "0",
         remark: undefined,
         postIds: [],
-        roleIds: []
+        roleIds: [],
+        birthday: undefined,
+        salary: undefined,
+        commission: undefined,
+        todayStatus: undefined
       };
       this.resetForm("form");
     },

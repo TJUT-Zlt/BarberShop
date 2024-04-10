@@ -7,7 +7,7 @@ import com.barbershop.system.domain.vo.TreeSelect;
 /**
  * 部门管理 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysDeptService
 {

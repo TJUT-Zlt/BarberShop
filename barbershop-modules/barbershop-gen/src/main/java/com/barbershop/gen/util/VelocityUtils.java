@@ -16,7 +16,7 @@ import com.barbershop.gen.domain.GenTableColumn;
 /**
  * 模板工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class VelocityUtils
 {

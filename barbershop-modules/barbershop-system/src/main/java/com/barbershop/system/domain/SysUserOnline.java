@@ -3,7 +3,7 @@ package com.barbershop.system.domain;
 /**
  * 当前在线会话
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysUserOnline
 {

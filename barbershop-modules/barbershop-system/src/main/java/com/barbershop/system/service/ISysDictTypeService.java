@@ -7,7 +7,7 @@ import com.barbershop.system.api.domain.SysDictType;
 /**
  * 字典 业务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysDictTypeService
 {

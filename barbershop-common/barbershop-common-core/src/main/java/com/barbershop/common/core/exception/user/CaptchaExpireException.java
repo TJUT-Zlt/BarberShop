@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception.user;
 /**
  * 验证码失效异常类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class CaptchaExpireException extends UserException
 {

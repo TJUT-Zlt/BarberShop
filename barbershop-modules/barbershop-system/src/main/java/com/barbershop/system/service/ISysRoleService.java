@@ -8,7 +8,7 @@ import com.barbershop.system.domain.SysUserRole;
 /**
  * 角色业务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysRoleService
 {

@@ -12,7 +12,7 @@ import com.barbershop.common.core.utils.poi.ExcelHandlerAdapter;
 /**
  * 自定义导出Excel数据注解
  * 
- * @author ruoyi
+ * @author abel
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

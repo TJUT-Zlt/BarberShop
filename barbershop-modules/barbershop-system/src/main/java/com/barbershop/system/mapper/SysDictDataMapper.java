@@ -7,7 +7,7 @@ import com.barbershop.system.api.domain.SysDictData;
 /**
  * 字典表 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysDictDataMapper
 {

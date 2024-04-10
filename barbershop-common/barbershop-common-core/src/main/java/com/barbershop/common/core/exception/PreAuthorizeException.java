@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 权限异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class PreAuthorizeException extends RuntimeException
 {

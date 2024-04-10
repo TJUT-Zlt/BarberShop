@@ -33,7 +33,7 @@ import com.barbershop.system.service.ISysUserService;
 /**
  * 用户 业务层处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService

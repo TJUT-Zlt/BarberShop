@@ -8,7 +8,7 @@ import com.barbershop.common.security.annotation.EnableRyFeignClients;
 /**
  * 认证授权中心
  * 
- * @author ruoyi
+ * @author abel
  */
 @EnableRyFeignClients
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })

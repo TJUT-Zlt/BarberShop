@@ -9,7 +9,7 @@ import com.barbershop.system.domain.vo.TreeSelect;
 /**
  * 菜单 业务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysMenuService
 {

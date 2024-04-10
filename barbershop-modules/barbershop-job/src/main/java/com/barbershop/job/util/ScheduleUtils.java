@@ -21,7 +21,7 @@ import com.barbershop.job.domain.SysJob;
 /**
  * 定时任务工具类
  * 
- * @author ruoyi
+ * @author abel
  *
  */
 public class ScheduleUtils

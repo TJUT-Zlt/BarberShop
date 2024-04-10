@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 通用常量信息
  * 
- * @author ruoyi
+ * @author abel
  */
 public class Constants
 {

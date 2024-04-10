@@ -3,7 +3,7 @@ package com.barbershop.common.security.annotation;
 /**
  * 权限注解的验证模式
  * 
- * @author ruoyi
+ * @author abel
  *
  */
 public enum Logical

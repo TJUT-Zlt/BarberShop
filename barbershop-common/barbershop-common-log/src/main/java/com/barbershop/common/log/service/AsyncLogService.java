@@ -10,7 +10,7 @@ import com.barbershop.system.api.domain.SysOperLog;
 /**
  * 异步调用日志服务
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class AsyncLogService

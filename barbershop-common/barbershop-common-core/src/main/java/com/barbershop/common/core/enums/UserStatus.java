@@ -3,7 +3,7 @@ package com.barbershop.common.core.enums;
 /**
  * 用户状态
  * 
- * @author ruoyi
+ * @author abel
  */
 public enum UserStatus
 {

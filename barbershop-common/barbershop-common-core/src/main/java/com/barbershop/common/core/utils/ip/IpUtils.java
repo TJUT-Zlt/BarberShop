@@ -9,7 +9,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * 获取IP方法
  * 
- * @author ruoyi
+ * @author abel
  */
 public class IpUtils
 {

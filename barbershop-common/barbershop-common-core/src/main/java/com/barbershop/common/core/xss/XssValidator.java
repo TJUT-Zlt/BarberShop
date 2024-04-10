@@ -9,7 +9,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * 自定义xss校验注解实现
  * 
- * @author ruoyi
+ * @author abel
  */
 public class XssValidator implements ConstraintValidator<Xss, String>
 {

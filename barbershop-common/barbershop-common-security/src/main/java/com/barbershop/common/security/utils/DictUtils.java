@@ -12,7 +12,7 @@ import com.barbershop.system.api.domain.SysDictData;
 /**
  * 字典工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class DictUtils
 {

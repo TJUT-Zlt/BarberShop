@@ -25,7 +25,7 @@ import com.barbershop.system.service.ISysMenuService;
 /**
  * 菜单信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/menu")

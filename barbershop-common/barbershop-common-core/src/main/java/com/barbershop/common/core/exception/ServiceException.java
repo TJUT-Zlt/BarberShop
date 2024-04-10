@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 业务异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public final class ServiceException extends RuntimeException
 {

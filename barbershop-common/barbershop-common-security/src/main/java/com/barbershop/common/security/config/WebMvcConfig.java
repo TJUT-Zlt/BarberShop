@@ -7,7 +7,7 @@ import com.barbershop.common.security.interceptor.HeaderInterceptor;
 /**
  * 拦截器配置
  *
- * @author ruoyi
+ * @author abel
  */
 public class WebMvcConfig implements WebMvcConfigurer
 {

@@ -3,6 +3,8 @@ package com.barbershop.system.api.domain;
 import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.barbershop.common.core.annotation.Excel;
@@ -15,7 +17,7 @@ import com.barbershop.common.core.xss.Xss;
 /**
  * 用户对象 sys_user
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysUser extends BaseEntity
 {
@@ -88,6 +90,61 @@ public class SysUser extends BaseEntity
 
     /** 角色ID */
     private Long roleId;
+
+    /**自定义内容开始 */
+    /** 生日 */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "生日", width = 30, dateFormat = "yyyy-MM-dd", type = Type.EXPORT)
+    private Date birthday;
+
+    /** 薪水 */
+    @Excel(name = "薪水")
+    private Integer salary;
+
+    /** 提成 */
+    @Excel(name = "提成")
+    private Integer commission;
+
+    /** 员工状态(0在岗 1休假 2出差 3离职)  自定义字典类型数据 */
+    @Excel(name = "员工状态", readConverterExp = "0=在岗,1=休假,2=出差,3=离职")
+    private String todayStatus;
+    public void setBirthday(Date birthday)
+    {
+        this.birthday = birthday;
+    }
+
+    public Date getBirthday()
+    {
+        return birthday;
+    }
+    public void setSalary(Integer salary)
+    {
+        this.salary = salary;
+    }
+
+    public Integer getSalary()
+    {
+        return salary;
+    }
+    public void setCommission(Integer commission)
+    {
+        this.commission = commission;
+    }
+
+    public Integer getCommission()
+    {
+        return commission;
+    }
+    public void setTodayStatus(String todayStatus)
+    {
+        this.todayStatus = todayStatus;
+    }
+
+    public String getTodayStatus()
+    {
+        return todayStatus;
+    }
+    /**自定义内容结束 */
 
     public SysUser()
     {
@@ -318,6 +375,10 @@ public class SysUser extends BaseEntity
             .append("updateTime", getUpdateTime())
             .append("remark", getRemark())
             .append("dept", getDept())
+            .append("birthday", getBirthday())
+            .append("salary", getSalary())
+            .append("commission", getCommission())
+            .append("todayStatus", getTodayStatus())
             .toString();
     }
 }

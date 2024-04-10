@@ -12,7 +12,7 @@ import com.barbershop.gateway.handler.ValidateCodeHandler;
 /**
  * 路由配置信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @Configuration
 public class RouterFunctionConfiguration

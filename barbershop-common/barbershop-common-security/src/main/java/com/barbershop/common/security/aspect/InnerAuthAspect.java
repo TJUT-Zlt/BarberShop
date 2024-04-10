@@ -14,7 +14,7 @@ import com.barbershop.common.security.annotation.InnerAuth;
 /**
  * 内部服务调用验证处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Aspect
 @Component

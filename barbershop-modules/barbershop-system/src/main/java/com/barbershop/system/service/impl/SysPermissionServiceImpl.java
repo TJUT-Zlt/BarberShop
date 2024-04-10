@@ -15,7 +15,7 @@ import com.barbershop.system.service.ISysRoleService;
 /**
  * 用户权限处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysPermissionServiceImpl implements ISysPermissionService

@@ -7,7 +7,7 @@ import com.barbershop.system.api.domain.SysUser;
 /**
  * 用户表 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysUserMapper
 {

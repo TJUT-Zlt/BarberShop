@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 权限相关通用常量
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SecurityConstants
 {

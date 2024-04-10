@@ -6,7 +6,7 @@ import com.barbershop.job.domain.SysJobLog;
 /**
  * 调度任务日志信息 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysJobLogMapper
 {

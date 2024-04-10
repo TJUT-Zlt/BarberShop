@@ -26,7 +26,7 @@ import com.barbershop.system.service.ISysDeptService;
 /**
  * 部门信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/dept")

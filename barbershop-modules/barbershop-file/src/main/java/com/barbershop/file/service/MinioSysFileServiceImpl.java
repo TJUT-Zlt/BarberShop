@@ -13,7 +13,7 @@ import io.minio.PutObjectArgs;
 /**
  * Minio 文件存储
  *
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class MinioSysFileServiceImpl implements ISysFileService

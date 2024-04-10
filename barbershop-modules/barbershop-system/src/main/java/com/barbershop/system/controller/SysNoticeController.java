@@ -24,7 +24,7 @@ import com.barbershop.system.service.ISysNoticeService;
 /**
  * 公告 信息操作处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/notice")

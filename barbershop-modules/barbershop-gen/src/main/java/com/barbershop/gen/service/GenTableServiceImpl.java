@@ -40,7 +40,7 @@ import com.barbershop.gen.util.VelocityUtils;
 /**
  * 业务 服务层实现
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class GenTableServiceImpl implements IGenTableService

@@ -3,7 +3,7 @@ package com.barbershop.common.core.utils.file;
 /**
  * 媒体类型工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class MimeTypeUtils
 {

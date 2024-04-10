@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception.job;
 /**
  * 计划策略异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class TaskException extends Exception
 {

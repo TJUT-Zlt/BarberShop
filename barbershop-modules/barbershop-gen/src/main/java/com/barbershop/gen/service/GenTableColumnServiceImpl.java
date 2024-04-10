@@ -10,7 +10,7 @@ import com.barbershop.gen.mapper.GenTableColumnMapper;
 /**
  * 业务字段 服务层实现
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class GenTableColumnServiceImpl implements IGenTableColumnService 

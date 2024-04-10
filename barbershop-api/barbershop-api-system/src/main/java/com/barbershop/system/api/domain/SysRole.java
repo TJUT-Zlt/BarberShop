@@ -13,7 +13,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 角色表 sys_role
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysRole extends BaseEntity
 {

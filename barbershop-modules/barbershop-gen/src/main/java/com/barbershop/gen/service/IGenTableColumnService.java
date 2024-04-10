@@ -6,7 +6,7 @@ import com.barbershop.gen.domain.GenTableColumn;
 /**
  * 业务字段 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface IGenTableColumnService
 {

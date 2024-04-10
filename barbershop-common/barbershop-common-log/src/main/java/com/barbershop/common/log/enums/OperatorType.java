@@ -3,7 +3,7 @@ package com.barbershop.common.log.enums;
 /**
  * 操作人类别
  * 
- * @author ruoyi
+ * @author abel
  */
 public enum OperatorType
 {

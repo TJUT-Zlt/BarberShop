@@ -3,7 +3,7 @@ package com.barbershop.common.log.enums;
 /**
  * 操作状态
  * 
- * @author ruoyi
+ * @author abel
  *
  */
 public enum BusinessStatus

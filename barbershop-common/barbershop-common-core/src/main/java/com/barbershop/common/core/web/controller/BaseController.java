@@ -17,7 +17,7 @@ import com.barbershop.common.core.web.page.TableDataInfo;
 /**
  * web层通用数据处理
  * 
- * @author ruoyi
+ * @author abel
  */
 public class BaseController
 {

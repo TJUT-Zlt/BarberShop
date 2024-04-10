@@ -5,7 +5,7 @@ import com.barbershop.common.core.exception.base.BaseException;
 /**
  * 文件信息异常类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class FileException extends BaseException
 {

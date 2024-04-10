@@ -3,7 +3,7 @@ package com.barbershop.auth.form;
 /**
  * 用户登录对象
  * 
- * @author ruoyi
+ * @author abel
  */
 public class LoginBody
 {

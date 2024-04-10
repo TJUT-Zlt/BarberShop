@@ -10,7 +10,7 @@ import com.barbershop.system.service.ISysOperLogService;
 /**
  * 操作日志 服务层处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService

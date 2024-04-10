@@ -9,7 +9,7 @@ import com.barbershop.common.swagger.annotation.EnableCustomSwagger2;
 /**
  * 系统模块
  * 
- * @author ruoyi
+ * @author abel
  */
 @EnableCustomConfig
 @EnableCustomSwagger2

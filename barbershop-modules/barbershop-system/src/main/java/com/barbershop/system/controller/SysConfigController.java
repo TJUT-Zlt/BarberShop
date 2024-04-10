@@ -26,7 +26,7 @@ import com.barbershop.system.service.ISysConfigService;
 /**
  * 参数配置 信息操作处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/config")

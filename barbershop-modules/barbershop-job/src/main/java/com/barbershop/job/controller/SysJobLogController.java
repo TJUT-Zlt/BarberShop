@@ -22,7 +22,7 @@ import com.barbershop.job.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/job/log")

@@ -7,7 +7,7 @@ import com.barbershop.system.domain.SysMenu;
 /**
  * 菜单表 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysMenuMapper
 {

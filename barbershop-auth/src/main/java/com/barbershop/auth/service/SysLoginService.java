@@ -21,7 +21,7 @@ import com.barbershop.system.api.model.LoginUser;
 /**
  * 登录校验方法
  * 
- * @author ruoyi
+ * @author abel
  */
 @Component
 public class SysLoginService

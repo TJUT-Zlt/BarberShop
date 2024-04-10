@@ -20,7 +20,7 @@ import com.barbershop.system.api.model.LoginUser;
 /**
  * token 控制
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 public class TokenController

@@ -31,7 +31,7 @@ import com.barbershop.job.util.ScheduleUtils;
 /**
  * 调度任务信息操作处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/job")

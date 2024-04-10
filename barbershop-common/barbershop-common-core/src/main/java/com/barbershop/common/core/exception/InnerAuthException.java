@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 内部认证异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class InnerAuthException extends RuntimeException
 {

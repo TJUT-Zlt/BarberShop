@@ -23,6 +23,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"     column="update_by"    />
         <result property="updateTime"   column="update_time"  />
         <result property="remark"       column="remark"       />
+		<!--自定义内容 开始-->
+		<!--关键点:注意顺序 result asscciation collection -->
+		<result property="birthday"    column="birthday"    />
+		<result property="salary"    column="salary"    />
+		<result property="commission"    column="commission"    />
+		<result property="todayStatus"    column="today_status"    />
+		<!--自定义内容 结束-->
         <association property="dept"    javaType="SysDept"         resultMap="deptResult" />
         <collection  property="roles"   javaType="java.util.List"  resultMap="RoleResult" />
     </resultMap>
@@ -47,7 +54,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectUserVo">
-        select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, 
+        select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
+		u.birthday, u.salary, u.commission, u.today_status,
         d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status as dept_status,
         r.role_id, r.role_name, r.role_key, r.role_sort, r.data_scope, r.status as role_status
         from sys_user u
@@ -57,7 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
     
     <select id="selectUserList" parameterType="SysUser" resultMap="SysUserResult">
-		select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name, d.leader from sys_user u
+		select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
+		u.birthday, u.salary, u.commission, u.today_status,
+		d.dept_name, d.leader from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
 		where u.del_flag = '0'
 		<if test="userId != null and userId != 0">
@@ -156,6 +166,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="status != null and status != ''">status,</if>
  			<if test="createBy != null and createBy != ''">create_by,</if>
  			<if test="remark != null and remark != ''">remark,</if>
+			<!--自定义内容 开始 -->
+			<if test="birthday != null">birthday,</if>
+			<if test="salary != null and salary != ''">salary,</if>
+			<if test="commission != null and commission != ''">commission,</if>
+			<if test="todayStatus != null and todayStatus != ''">today_status,</if>
+			<!--自定义内容 结束 -->
  			create_time
  		)values(
  			<if test="userId != null and userId != ''">#{userId},</if>
@@ -170,6 +186,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="status != null and status != ''">#{status},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>
  			<if test="remark != null and remark != ''">#{remark},</if>
+			<!--自定义内容 开始 -->
+			<if test="birthday != null">#{birthday},</if>
+			<if test="salary != null and salary != ''">#{salary},</if>
+			<if test="commission != null and commission != ''">#{commission},</if>
+			<if test="todayStatus != null and todayStatus != ''">#{todayStatus},</if>
+			<!--自定义内容 结束 -->
  			sysdate()
  		)
 	</insert>
@@ -190,6 +212,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="loginDate != null">login_date = #{loginDate},</if>
  			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
  			<if test="remark != null">remark = #{remark},</if>
+			<!--自定义内容 开始 -->
+			<if test="birthday != null">birthday = #{birthday},</if>
+			<if test="salary != null and salary != ''">salary = #{salary},</if>
+			<if test="commission != null and commission != ''">commission = #{commission},</if>
+			<if test="todayStatus != null and todayStatus != ''">today_status = #{todayStatus},</if>
+			<!--自定义内容 结束 -->
  			update_time = sysdate()
  		</set>
  		where user_id = #{userId}

@@ -10,7 +10,7 @@ import com.barbershop.system.service.ISysNoticeService;
 /**
  * 公告 服务层实现
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService

@@ -8,7 +8,7 @@ import com.barbershop.common.core.web.page.TableSupport;
 /**
  * 分页工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class PageUtils extends PageHelper
 {

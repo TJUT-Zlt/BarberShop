@@ -10,7 +10,7 @@ import com.barbershop.system.domain.SysMenu;
 /**
  * Treeselect树结构实体类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class TreeSelect implements Serializable
 {

@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 返回状态码
  * 
- * @author ruoyi
+ * @author abel
  */
 public class HttpStatus
 {

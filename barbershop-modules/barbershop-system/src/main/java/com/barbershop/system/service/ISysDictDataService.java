@@ -6,7 +6,7 @@ import com.barbershop.system.api.domain.SysDictData;
 /**
  * 字典 业务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysDictDataService
 {

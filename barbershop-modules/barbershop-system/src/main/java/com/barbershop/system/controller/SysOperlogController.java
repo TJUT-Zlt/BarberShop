@@ -24,7 +24,7 @@ import com.barbershop.system.service.ISysOperLogService;
 /**
  * 操作日志记录
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/operlog")

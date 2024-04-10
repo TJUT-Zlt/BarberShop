@@ -26,7 +26,7 @@ import com.barbershop.system.service.ISysDictTypeService;
 /**
  * 数据字典信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/dict/type")

@@ -31,7 +31,7 @@ import com.barbershop.system.service.ISysUserService;
 /**
  * 角色信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/role")

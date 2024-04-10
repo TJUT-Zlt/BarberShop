@@ -6,7 +6,7 @@ import com.barbershop.system.api.domain.SysOperLog;
 /**
  * 操作日志 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysOperLogService
 {

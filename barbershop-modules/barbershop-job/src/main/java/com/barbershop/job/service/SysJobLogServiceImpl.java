@@ -9,7 +9,7 @@ import com.barbershop.job.mapper.SysJobLogMapper;
 /**
  * 定时任务调度日志信息 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 @Service
 public class SysJobLogServiceImpl implements ISysJobLogService

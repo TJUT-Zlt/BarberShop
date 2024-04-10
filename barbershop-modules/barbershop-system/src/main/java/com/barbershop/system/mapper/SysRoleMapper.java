@@ -6,7 +6,7 @@ import com.barbershop.system.api.domain.SysRole;
 /**
  * 角色表 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysRoleMapper
 {

@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 代码生成通用常量
  * 
- * @author ruoyi
+ * @author abel
  */
 public class GenConstants
 {

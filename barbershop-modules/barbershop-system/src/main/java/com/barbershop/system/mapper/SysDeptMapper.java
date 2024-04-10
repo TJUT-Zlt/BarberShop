@@ -7,7 +7,7 @@ import com.barbershop.system.api.domain.SysDept;
 /**
  * 部门管理 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface SysDeptMapper
 {

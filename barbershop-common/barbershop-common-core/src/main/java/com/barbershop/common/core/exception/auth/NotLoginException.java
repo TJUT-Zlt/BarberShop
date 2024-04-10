@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception.auth;
 /**
  * 未能通过的登录认证异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class NotLoginException extends RuntimeException
 {

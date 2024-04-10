@@ -22,7 +22,7 @@ import com.barbershop.system.api.model.LoginUser;
 /**
  * token验证处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Component
 public class TokenService

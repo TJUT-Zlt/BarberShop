@@ -11,7 +11,7 @@ import com.barbershop.gen.domain.GenTableColumn;
 /**
  * 代码生成器 工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class GenUtils
 {

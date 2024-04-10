@@ -12,7 +12,7 @@ import com.barbershop.system.api.domain.SysLogininfor;
 /**
  * 记录日志方法
  * 
- * @author ruoyi
+ * @author abel
  */
 @Component
 public class SysRecordLogService

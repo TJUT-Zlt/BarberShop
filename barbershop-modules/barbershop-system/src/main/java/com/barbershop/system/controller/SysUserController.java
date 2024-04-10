@@ -42,7 +42,7 @@ import com.barbershop.system.service.ISysUserService;
 /**
  * 用户信息
  * 
- * @author ruoyi
+ * @author abel
  */
 @RestController
 @RequestMapping("/user")

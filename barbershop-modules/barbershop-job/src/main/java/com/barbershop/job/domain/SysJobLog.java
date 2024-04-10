@@ -9,7 +9,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 定时任务调度日志表 sys_job_log
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysJobLog extends BaseEntity
 {

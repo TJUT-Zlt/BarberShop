@@ -3,7 +3,7 @@ package com.barbershop.common.core.utils.uuid;
 /**
  * ID生成器工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class IdUtils
 {

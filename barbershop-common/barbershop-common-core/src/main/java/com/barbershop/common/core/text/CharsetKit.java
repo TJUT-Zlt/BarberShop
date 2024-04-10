@@ -7,7 +7,7 @@ import com.barbershop.common.core.utils.StringUtils;
 /**
  * 字符集工具类
  * 
- * @author ruoyi
+ * @author abel
  */
 public class CharsetKit
 {

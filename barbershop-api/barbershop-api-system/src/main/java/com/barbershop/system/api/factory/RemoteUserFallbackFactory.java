@@ -12,7 +12,7 @@ import com.barbershop.system.api.model.LoginUser;
 /**
  * 用户服务降级处理
  * 
- * @author ruoyi
+ * @author abel
  */
 @Component
 public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserService>

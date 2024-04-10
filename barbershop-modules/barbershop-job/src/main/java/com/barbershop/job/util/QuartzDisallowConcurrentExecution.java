@@ -8,7 +8,7 @@ import com.barbershop.job.domain.SysJob;
 /**
  * 定时任务处理（禁止并发执行）
  * 
- * @author ruoyi
+ * @author abel
  *
  */
 @DisallowConcurrentExecution

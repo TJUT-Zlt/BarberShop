@@ -8,7 +8,7 @@ import com.barbershop.common.swagger.annotation.EnableCustomSwagger2;
 /**
  * 文件服务
  * 
- * @author ruoyi
+ * @author abel
  */
 @EnableCustomSwagger2
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })

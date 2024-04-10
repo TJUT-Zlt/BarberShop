@@ -6,7 +6,7 @@ import com.barbershop.common.core.utils.ServletUtils;
 /**
  * 表格数据处理
  * 
- * @author ruoyi
+ * @author abel
  */
 public class TableSupport
 {

@@ -7,7 +7,7 @@ import com.barbershop.system.api.domain.SysUser;
 /**
  * 权限信息 服务层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface ISysPermissionService
 {

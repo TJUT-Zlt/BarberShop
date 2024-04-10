@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 演示模式异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class DemoModeException extends RuntimeException
 {

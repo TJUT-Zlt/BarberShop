@@ -3,7 +3,7 @@ package com.barbershop.common.core.exception;
 /**
  * 全局异常
  * 
- * @author ruoyi
+ * @author abel
  */
 public class GlobalException extends RuntimeException
 {

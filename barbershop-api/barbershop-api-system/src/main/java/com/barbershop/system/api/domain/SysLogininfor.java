@@ -9,7 +9,7 @@ import com.barbershop.common.core.web.domain.BaseEntity;
 /**
  * 系统访问记录表 sys_logininfor
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysLogininfor extends BaseEntity
 {

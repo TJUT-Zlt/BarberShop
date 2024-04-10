@@ -10,7 +10,7 @@ import com.barbershop.common.core.xss.Xss;
 /**
  * 通知公告表 sys_notice
  * 
- * @author ruoyi
+ * @author abel
  */
 public class SysNotice extends BaseEntity
 {

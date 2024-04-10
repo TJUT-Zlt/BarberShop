@@ -6,7 +6,7 @@ import com.barbershop.gen.domain.GenTable;
 /**
  * 业务 数据层
  * 
- * @author ruoyi
+ * @author abel
  */
 public interface GenTableMapper
 {

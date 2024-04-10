@@ -9,7 +9,7 @@ import com.barbershop.gateway.handler.SentinelFallbackHandler;
 /**
  * 网关限流配置
  * 
- * @author ruoyi
+ * @author abel
  */
 @Configuration
 public class GatewayConfig

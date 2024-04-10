@@ -3,7 +3,7 @@ package com.barbershop.common.core.constant;
 /**
  * 用户常量信息
  * 
- * @author ruoyi
+ * @author abel
  */
 public class UserConstants
 {
