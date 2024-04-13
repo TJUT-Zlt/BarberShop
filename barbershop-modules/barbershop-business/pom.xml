@@ -1,77 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>com.barbershop</groupId>
         <artifactId>barbershop-modules</artifactId>
         <version>3.6.4</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-	
-    <artifactId>barbershop-modules-system</artifactId>
+
+
+    <artifactId>barbershop-modules-business</artifactId>
 
     <description>
-        barbershop-modules-system系统模块
+        barbershop-modules-business自定义业务模块
     </description>
-	
+
+
     <dependencies>
-    	
-    	<!-- SpringCloud Alibaba Nacos -->
+
+        <!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        
+
         <!-- SpringCloud Alibaba Nacos Config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        
-    	<!-- SpringCloud Alibaba Sentinel -->
+
+        <!-- SpringCloud Alibaba Sentinel -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-        
-    	<!-- SpringBoot Actuator -->
+
+        <!-- SpringBoot Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-		
+
         <!-- Swagger UI -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.fox.version}</version>
         </dependency>
-		
+
         <!-- Mysql Connector -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
-        
+
         <!-- RuoYi Common DataSource -->
         <dependency>
             <groupId>com.barbershop</groupId>
             <artifactId>barbershop-common-datasource</artifactId>
         </dependency>
-        
+
         <!-- RuoYi Common DataScope -->
         <dependency>
             <groupId>com.barbershop</groupId>
             <artifactId>barbershop-common-datascope</artifactId>
         </dependency>
-        
+
         <!-- RuoYi Common Log -->
         <dependency>
             <groupId>com.barbershop</groupId>
             <artifactId>barbershop-common-log</artifactId>
         </dependency>
-        
+
         <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>com.barbershop</groupId>
@@ -91,6 +93,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.barbershop</groupId>
+            <artifactId>barbershop-modules-system</artifactId>
+            <version>3.6.4</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -110,5 +118,5 @@
             </plugin>
         </plugins>
     </build>
-   
+
 </project>

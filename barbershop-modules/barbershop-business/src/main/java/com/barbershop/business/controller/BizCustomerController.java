@@ -1,4 +1,4 @@
-package com.barbershop.system.controller;
+package com.barbershop.business.controller;
 
 import java.util.List;
 import java.io.IOException;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.barbershop.common.log.annotation.Log;
 import com.barbershop.common.log.enums.BusinessType;
 import com.barbershop.common.security.annotation.RequiresPermissions;
-import com.barbershop.system.domain.SysSystemCustomer;
-import com.barbershop.system.service.ISysSystemCustomerService;
+import com.barbershop.business.domain.BizCustomer;
+import com.barbershop.business.service.IBizCustomerService;
 import com.barbershop.common.core.web.controller.BaseController;
 import com.barbershop.common.core.web.domain.AjaxResult;
 import com.barbershop.common.core.utils.poi.ExcelUtil;
@@ -26,80 +26,80 @@ import com.barbershop.common.core.web.page.TableDataInfo;
  * 客户管理Controller
  * 
  * @author ruoyi
- * @date 2024-04-08
+ * @date 2024-04-11
  */
 @RestController
-@RequestMapping("/SysCustomer")
-public class SysSystemCustomerController extends BaseController
+@RequestMapping("/BizCustomer")
+public class BizCustomerController extends BaseController
 {
     @Autowired
-    private ISysSystemCustomerService sysSystemCustomerService;
+    private IBizCustomerService bizCustomerService;
 
     /**
      * 查询客户管理列表
      */
-    @RequiresPermissions("system:SysCustomer:list")
+    @RequiresPermissions("business:BizCustomer:list")
     @GetMapping("/list")
-    public TableDataInfo list(SysSystemCustomer sysSystemCustomer)
+    public TableDataInfo list(BizCustomer bizCustomer)
     {
         startPage();
-        List<SysSystemCustomer> list = sysSystemCustomerService.selectSysSystemCustomerList(sysSystemCustomer);
+        List<BizCustomer> list = bizCustomerService.selectBizCustomerList(bizCustomer);
         return getDataTable(list);
     }
 
     /**
      * 导出客户管理列表
      */
-    @RequiresPermissions("system:SysCustomer:export")
+    @RequiresPermissions("business:BizCustomer:export")
     @Log(title = "客户管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysSystemCustomer sysSystemCustomer)
+    public void export(HttpServletResponse response, BizCustomer bizCustomer)
     {
-        List<SysSystemCustomer> list = sysSystemCustomerService.selectSysSystemCustomerList(sysSystemCustomer);
-        ExcelUtil<SysSystemCustomer> util = new ExcelUtil<SysSystemCustomer>(SysSystemCustomer.class);
+        List<BizCustomer> list = bizCustomerService.selectBizCustomerList(bizCustomer);
+        ExcelUtil<BizCustomer> util = new ExcelUtil<BizCustomer>(BizCustomer.class);
         util.exportExcel(response, list, "客户管理数据");
     }
 
     /**
      * 获取客户管理详细信息
      */
-    @RequiresPermissions("system:SysCustomer:query")
+    @RequiresPermissions("business:BizCustomer:query")
     @GetMapping(value = "/{customerId}")
     public AjaxResult getInfo(@PathVariable("customerId") Long customerId)
     {
-        return success(sysSystemCustomerService.selectSysSystemCustomerByCustomerId(customerId));
+        return success(bizCustomerService.selectBizCustomerByCustomerId(customerId));
     }
 
     /**
      * 新增客户管理
      */
-    @RequiresPermissions("system:SysCustomer:add")
+    @RequiresPermissions("business:BizCustomer:add")
     @Log(title = "客户管理", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody SysSystemCustomer sysSystemCustomer)
+    public AjaxResult add(@RequestBody BizCustomer bizCustomer)
     {
-        return toAjax(sysSystemCustomerService.insertSysSystemCustomer(sysSystemCustomer));
+        return toAjax(bizCustomerService.insertBizCustomer(bizCustomer));
     }
 
     /**
      * 修改客户管理
      */
-    @RequiresPermissions("system:SysCustomer:edit")
+    @RequiresPermissions("business:BizCustomer:edit")
     @Log(title = "客户管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody SysSystemCustomer sysSystemCustomer)
+    public AjaxResult edit(@RequestBody BizCustomer bizCustomer)
     {
-        return toAjax(sysSystemCustomerService.updateSysSystemCustomer(sysSystemCustomer));
+        return toAjax(bizCustomerService.updateBizCustomer(bizCustomer));
     }
 
     /**
      * 删除客户管理
      */
-    @RequiresPermissions("system:SysCustomer:remove")
+    @RequiresPermissions("business:BizCustomer:remove")
     @Log(title = "客户管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{customerIds}")
     public AjaxResult remove(@PathVariable Long[] customerIds)
     {
-        return toAjax(sysSystemCustomerService.deleteSysSystemCustomerByCustomerIds(customerIds));
+        return toAjax(bizCustomerService.deleteBizCustomerByCustomerIds(customerIds));
     }
 }

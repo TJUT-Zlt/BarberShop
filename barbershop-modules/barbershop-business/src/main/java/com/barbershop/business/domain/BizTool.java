@@ -1,4 +1,4 @@
-package com.barbershop.system.domain;
+package com.barbershop.business.domain;
 
 import com.barbershop.common.core.annotation.Excels;
 import com.barbershop.system.api.domain.SysDept;
@@ -8,12 +8,12 @@ import com.barbershop.common.core.annotation.Excel;
 import com.barbershop.common.core.web.domain.BaseEntity;
 
 /**
- * 工具管理对象 sys_system_tool
+ * 工具管理对象 biz_tool
  * 
  * @author ruoyi
- * @date 2024-04-08
+ * @date 2024-04-11
  */
-public class SysSystemTool extends BaseEntity
+public class BizTool extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
@@ -37,16 +37,14 @@ public class SysSystemTool extends BaseEntity
     private Integer number;
 
     /** 工具状态(0正常,1维修,2报废) */
-    @Excel(name = "工具状态(0正常,1维修,2报废)", readConverterExp = "0=正常,1=维修,2=报废")
+    @Excel(name = "工具状态", readConverterExp = "0=正常,1=维修,2=报废")
     private String toolStatus;
 
-    /** 部门对象 */
     @Excels({
             @Excel(name = "部门名称", targetAttr = "deptName", type = Excel.Type.EXPORT),
             @Excel(name = "部门负责人", targetAttr = "leader", type = Excel.Type.EXPORT)
     })
     private SysDept dept;
-
 
     public void setToolId(Long toolId) 
     {
@@ -57,12 +55,12 @@ public class SysSystemTool extends BaseEntity
     {
         return toolId;
     }
-    public void setDeptId(Long deptId)
+    public void setDeptId(Long deptId) 
     {
         this.deptId = deptId;
     }
 
-    public Long getDeptId()
+    public Long getDeptId() 
     {
         return deptId;
     }
@@ -112,6 +110,7 @@ public class SysSystemTool extends BaseEntity
     {
         this.dept = dept;
     }
+
 
     @Override
     public String toString() {

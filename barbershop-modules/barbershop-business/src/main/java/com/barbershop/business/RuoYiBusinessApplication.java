@@ -1,14 +1,13 @@
-package com.barbershop.system;
+package com.barbershop.business;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.barbershop.common.security.annotation.EnableCustomConfig;
 import com.barbershop.common.security.annotation.EnableRyFeignClients;
 import com.barbershop.common.swagger.annotation.EnableCustomSwagger2;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * 系统模块
+ * 自定义业务模块
  * 
  * @author abel
  */
@@ -16,12 +15,12 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
-public class RuoYiSystemApplication
+public class RuoYiBusinessApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiSystemApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  系统模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        SpringApplication.run(RuoYiBusinessApplication.class, args);
+        System.out.println("(♥◠‿◠)ﾉﾞ  自定义业务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +

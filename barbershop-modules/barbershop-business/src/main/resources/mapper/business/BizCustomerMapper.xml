@@ -2,14 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.barbershop.system.mapper.SysSystemCustomerMapper">
+<mapper namespace="com.barbershop.business.mapper.BizCustomerMapper">
 
-    <resultMap type="SysSystemCustomer" id="SysSystemCustomerResult">
+    <resultMap type="BizCustomer" id="BizCustomerResult">
         <result property="customerId"    column="customer_id"    />
         <result property="customerDeptId"    column="customer_dept_id"    />
         <result property="customerName"    column="customer_name"    />
         <result property="nickName"    column="nick_name"    />
-        <result property="sex"    column="sex"    />
         <result property="age"    column="age"    />
         <result property="birthday"    column="birthday"    />
         <result property="customerAccountBalance"    column="customer_account_balance"    />
@@ -25,27 +24,28 @@
         <result property="remark"    column="remark"    />
     </resultMap>
 
-    <sql id="selectSysSystemCustomerVo">
-        select customer_id, customer_dept_id, customer_name, nick_name, sex, age, birthday, customer_account_balance, perferences, email, phonenumber, customer_account_status, customer_account_level, create_by, create_time, update_by, update_time, remark from sys_system_customer
+    <sql id="selectBizCustomerVo">
+        select c.customer_id, c.customer_dept_id, c.customer_name, c.nick_name, c.sex, c.age, c.birthday,c.customer_account_balance, c.perferences, c.email,c.phonenumber,
+               c.customer_account_status,c.customer_account_level,c.create_by,c.create_time, c.update_by,c.update_time, c.remark
+        from biz_customer c
     </sql>
 
-    <select id="selectSysSystemCustomerList" parameterType="SysSystemCustomer" resultMap="SysSystemCustomerResult">
-        <include refid="selectSysSystemCustomerVo"/>
+    <select id="selectBizCustomerList" parameterType="BizCustomer" resultMap="BizCustomerResult">
+        <include refid="selectBizCustomerVo"/>
         <where>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
             <if test="nickName != null  and nickName != ''"> and nick_name like concat('%', #{nickName}, '%')</if>
             <if test="phonenumber != null  and phonenumber != ''"> and phonenumber = #{phonenumber}</if>
-            <if test="customerAccountStatus != null  and customerAccountStatus != ''"> and customer_account_status = #{customerAccountStatus}</if>
-            <if test="customerAccountLevel != null  and customerAccountLevel != ''"> and customer_account_level = #{customerAccountLevel}</if>
         </where>
     </select>
 
-    <select id="selectSysSystemCustomerByCustomerId" parameterType="Long" resultMap="SysSystemCustomerResult">
-        <include refid="selectSysSystemCustomerVo"/>
+    <select id="selectBizCustomerByCustomerId" parameterType="Long" resultMap="BizCustomerResult">
+        <include refid="selectBizCustomerVo"/>
         where customer_id = #{customerId}
     </select>
 
-    <insert id="insertSysSystemCustomer" parameterType="SysSystemCustomer" useGeneratedKeys="true" keyProperty="customerId">
-        insert into sys_system_customer
+    <insert id="insertBizCustomer" parameterType="BizCustomer" useGeneratedKeys="true" keyProperty="customerId">
+        insert into biz_customer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="customerDeptId != null">customer_dept_id,</if>
             <if test="customerName != null and customerName != ''">customer_name,</if>
@@ -86,8 +86,8 @@
         </trim>
     </insert>
 
-    <update id="updateSysSystemCustomer" parameterType="SysSystemCustomer">
-        update sys_system_customer
+    <update id="updateBizCustomer" parameterType="BizCustomer">
+        update biz_customer
         <trim prefix="SET" suffixOverrides=",">
             <if test="customerDeptId != null">customer_dept_id = #{customerDeptId},</if>
             <if test="customerName != null and customerName != ''">customer_name = #{customerName},</if>
@@ -110,14 +110,19 @@
         where customer_id = #{customerId}
     </update>
 
-    <delete id="deleteSysSystemCustomerByCustomerId" parameterType="Long">
-        delete from sys_system_customer where customer_id = #{customerId}
+    <delete id="deleteBizCustomerByCustomerId" parameterType="Long">
+        delete from biz_customer where customer_id = #{customerId}
     </delete>
 
-    <delete id="deleteSysSystemCustomerByCustomerIds" parameterType="String">
-        delete from sys_system_customer where customer_id in
+    <delete id="deleteBizCustomerByCustomerIds" parameterType="String">
+        delete from biz_customer where customer_id in
         <foreach item="customerId" collection="array" open="(" separator="," close=")">
             #{customerId}
         </foreach>
     </delete>
+
+    <select id="selectBizCustomerAll" resultMap="BizCustomerResult">
+        <include refid="selectBizCustomerVo"/>
+    </select>
+
 </mapper>

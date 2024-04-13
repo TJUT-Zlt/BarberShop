@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.barbershop.system.mapper.SysSystemToolMapper">
+<mapper namespace="com.barbershop.business.mapper.BizToolMapper">
 
-    <resultMap type="SysSystemTool" id="SysSystemToolResult">
+    <resultMap type="BizTool" id="BizToolResult">
         <result property="toolId"    column="tool_id"    />
         <result property="deptId"    column="dept_id"    />
         <result property="toolName"    column="tool_name"    />
@@ -16,10 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"    column="update_by"    />
         <result property="updateTime"    column="update_time"    />
         <result property="remark"    column="remark"    />
-        <association property="dept"    javaType="SysDept"         resultMap="deptResult" />
+        <association property="dept"    javaType="com.barbershop.system.api.domain.SysDept"   resultMap="deptResult" />
     </resultMap>
 
-    <resultMap id="deptResult" type="SysDept">
+    <resultMap id="deptResult" type="com.barbershop.system.api.domain.SysDept">
         <id     property="deptId"    column="dept_id"     />
         <result property="parentId"  column="parent_id"   />
         <result property="deptName"  column="dept_name"   />
@@ -29,37 +29,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="status"    column="dept_status" />
     </resultMap>
 
-    <sql id="selectSysSystemToolVo">
+    <sql id="selectBizToolVo">
         select t.tool_id, t.dept_id, t.tool_name, t.price, t.number,t.tool_status, t.create_by, t.create_time, t.update_by, t.update_time, t.remark,
-        d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status as dept_status
-        from sys_system_tool t
-            left join sys_dept d on t.dept_id = d.dept_id
-    </sql>
+               d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status
+        from biz_tool t
+                 left join sys_dept d on t.dept_id = d.dept_id
+     </sql>
 
-    <select id="selectSysSystemToolList" parameterType="SysSystemTool" resultMap="SysSystemToolResult">
-        <include refid="selectSysSystemToolVo"/>
+    <select id="selectBizToolList" parameterType="BizTool" resultMap="BizToolResult">
+        <include refid="selectBizToolVo"/>
         <where>
-            <if test="toolName != null  and toolName != ''"> and t.tool_name like concat('%', #{toolName}, '%')</if>
-            <if test="toolStatus != null  and toolStatus != ''"> and t.tool_status = #{toolStatus}</if>
+            <if test="toolName != null  and toolName != ''"> and tool_name like concat('%', #{toolName}, '%')</if>
+            <if test="toolStatus != null  and toolStatus != ''"> and tool_status = #{toolStatus}</if>
             <if test="deptId != null and deptId != 0">
                 and (t.dept_id = #{deptId} OR t.dept_id IN ( SELECT d.dept_id FROM sys_dept d WHERE find_in_set(#{deptId}, ancestors) ))
             </if>
         </where>
     </select>
 
-    <select id="selectSysSystemToolByToolId" parameterType="Long" resultMap="SysSystemToolResult">
-        <include refid="selectSysSystemToolVo"/>
+    <select id="selectBizToolByToolId" parameterType="Long" resultMap="BizToolResult">
+        <include refid="selectBizToolVo"/>
         where tool_id = #{toolId}
     </select>
 
-    <insert id="insertSysSystemTool" parameterType="SysSystemTool" useGeneratedKeys="true" keyProperty="toolId">
-        insert into sys_system_tool
+    <insert id="insertBizTool" parameterType="BizTool" useGeneratedKeys="true" keyProperty="toolId">
+        insert into biz_tool
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="deptId != null">dept_id,</if>
             <if test="toolName != null and toolName != ''">tool_name,</if>
             <if test="price != null">price,</if>
             <if test="number != null">number,</if>
-            <if test="toolStatus != null">tool_status,</if>
+            <if test="toolStatus != null and toolStatus != ''">tool_status,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="toolName != null and toolName != ''">#{toolName},</if>
             <if test="price != null">#{price},</if>
             <if test="number != null">#{number},</if>
-            <if test="toolStatus != null">#{toolStatus},</if>
+            <if test="toolStatus != null and toolStatus != ''">#{toolStatus},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -80,14 +80,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateSysSystemTool" parameterType="SysSystemTool">
-        update sys_system_tool
+    <update id="updateBizTool" parameterType="BizTool">
+        update biz_tool
         <trim prefix="SET" suffixOverrides=",">
             <if test="deptId != null">dept_id = #{deptId},</if>
             <if test="toolName != null and toolName != ''">tool_name = #{toolName},</if>
             <if test="price != null">price = #{price},</if>
             <if test="number != null">number = #{number},</if>
-            <if test="toolStatus != null">tool_status = #{toolStatus},</if>
+            <if test="toolStatus != null and toolStatus != ''">tool_status = #{toolStatus},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
@@ -97,12 +97,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where tool_id = #{toolId}
     </update>
 
-    <delete id="deleteSysSystemToolByToolId" parameterType="Long">
-        delete from sys_system_tool where tool_id = #{toolId}
+    <delete id="deleteBizToolByToolId" parameterType="Long">
+        delete from biz_tool where tool_id = #{toolId}
     </delete>
 
-    <delete id="deleteSysSystemToolByToolIds" parameterType="String">
-        delete from sys_system_tool where tool_id in
+    <delete id="deleteBizToolByToolIds" parameterType="String">
+        delete from biz_tool where tool_id in
         <foreach item="toolId" collection="array" open="(" separator="," close=")">
             #{toolId}
         </foreach>

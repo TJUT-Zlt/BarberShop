@@ -182,18 +182,6 @@
               <dict-tag :options="dict.type.sys_user_sex" :value="scope.row.sex"/>
             </template>
           </el-table-column>
-
-          <!-- <el-table-item label="岗位">
-            <el-select v-model="form.postIds" multiple placeholder="请选择岗位">
-              <el-option
-                v-for="item in postOptions"
-                :key="item.postId"
-                :label="item.postName"
-                :value="item.postId"
-                :disabled="item.status == 1"
-              ></el-option>
-            </el-select>
-          </el-table-item> -->
            <!-- 自定义内容 结束-->
 
           <el-table-column

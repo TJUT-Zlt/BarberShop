@@ -13,6 +13,7 @@
         <module>barbershop-gen</module>
         <module>barbershop-job</module>
         <module>barbershop-file</module>
+        <module>barbershop-business</module>
     </modules>
 
     <artifactId>barbershop-modules</artifactId>

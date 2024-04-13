@@ -1,15 +1,15 @@
-package com.barbershop.system.service;
+package com.barbershop.business.service;
 
 import java.util.List;
-import com.barbershop.system.domain.SysSystemTool;
+import com.barbershop.business.domain.BizTool;
 
 /**
  * 工具管理Service接口
  * 
  * @author ruoyi
- * @date 2024-04-08
+ * @date 2024-04-11
  */
-public interface ISysSystemToolService 
+public interface IBizToolService 
 {
     /**
      * 查询工具管理
@@ -17,31 +17,31 @@ public interface ISysSystemToolService
      * @param toolId 工具管理主键
      * @return 工具管理
      */
-    public SysSystemTool selectSysSystemToolByToolId(Long toolId);
+    public BizTool selectBizToolByToolId(Long toolId);
 
     /**
      * 查询工具管理列表
      * 
-     * @param sysSystemTool 工具管理
+     * @param bizTool 工具管理
      * @return 工具管理集合
      */
-    public List<SysSystemTool> selectSysSystemToolList(SysSystemTool sysSystemTool);
+    public List<BizTool> selectBizToolList(BizTool bizTool);
 
     /**
      * 新增工具管理
      * 
-     * @param sysSystemTool 工具管理
+     * @param bizTool 工具管理
      * @return 结果
      */
-    public int insertSysSystemTool(SysSystemTool sysSystemTool);
+    public int insertBizTool(BizTool bizTool);
 
     /**
      * 修改工具管理
      * 
-     * @param sysSystemTool 工具管理
+     * @param bizTool 工具管理
      * @return 结果
      */
-    public int updateSysSystemTool(SysSystemTool sysSystemTool);
+    public int updateBizTool(BizTool bizTool);
 
     /**
      * 批量删除工具管理
@@ -49,7 +49,7 @@ public interface ISysSystemToolService
      * @param toolIds 需要删除的工具管理主键集合
      * @return 结果
      */
-    public int deleteSysSystemToolByToolIds(Long[] toolIds);
+    public int deleteBizToolByToolIds(Long[] toolIds);
 
     /**
      * 删除工具管理信息
@@ -57,5 +57,5 @@ public interface ISysSystemToolService
      * @param toolId 工具管理主键
      * @return 结果
      */
-    public int deleteSysSystemToolByToolId(Long toolId);
+    public int deleteBizToolByToolId(Long toolId);
 }

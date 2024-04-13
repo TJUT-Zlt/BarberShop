@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 9201
+  port: 9204
 
 # Spring
 spring:
   application:
     # 应用名称
-    name: barbershop-system
+    name: barbershop-business
   profiles:
     # 环境配置
     active: dev

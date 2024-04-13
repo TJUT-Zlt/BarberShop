@@ -1,6 +1,8 @@
 package com.barbershop.system.mapper;
 
 import java.util.List;
+
+import com.barbershop.system.domain.SysPost;
 import org.apache.ibatis.annotations.Param;
 import com.barbershop.system.api.domain.SysUser;
 
@@ -124,4 +126,12 @@ public interface SysUserMapper
      * @return 结果
      */
     public SysUser checkEmailUnique(String email);
+
+    /**
+     * 查询所有用户
+     * @return  所有用户列表
+     */
+    public List<SysUser> selectSysUserAll();
+
+
 }

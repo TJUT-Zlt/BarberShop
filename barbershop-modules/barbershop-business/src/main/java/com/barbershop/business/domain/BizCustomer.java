@@ -1,4 +1,4 @@
-package com.barbershop.system.domain;
+package com.barbershop.business.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -8,24 +8,24 @@ import com.barbershop.common.core.annotation.Excel;
 import com.barbershop.common.core.web.domain.BaseEntity;
 
 /**
- * 客户管理对象 sys_system_customer
+ * 客户管理对象 biz_customer
  * 
  * @author ruoyi
- * @date 2024-04-08
+ * @date 2024-04-11
  */
-public class SysSystemCustomer extends BaseEntity
+public class BizCustomer extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 顾客ID */
+    /** 客户ID */
     private Long customerId;
 
     /** 所属分店ID */
     @Excel(name = "所属分店ID")
     private Long customerDeptId;
 
-    /** 顾客账号 */
-    @Excel(name = "顾客账号")
+    /** 客户账号 */
+    @Excel(name = "客户账号")
     private String customerName;
 
     /** 昵称 */
@@ -33,7 +33,7 @@ public class SysSystemCustomer extends BaseEntity
     private String nickName;
 
     /** 性别 */
-    @Excel(name = "性别",readConverterExp = "0=男,1=女,2=未知")
+    @Excel(name = "性别")
     private String sex;
 
     /** 年龄 */
@@ -62,11 +62,11 @@ public class SysSystemCustomer extends BaseEntity
     private String phonenumber;
 
     /** 账号状态(1正常,0停用) */
-    @Excel(name = "账号状态",readConverterExp = "0=正常,1=停用")
+    @Excel(name = "账号状态(1正常,0停用)")
     private String customerAccountStatus;
 
-    /** 顾客等级(1普通用户,2vip用户) */
-    @Excel(name = "顾客等级",readConverterExp = "1=普通用户,2=vip用户")
+    /** 客户账号等级(1普通用户,2vip用户) */
+    @Excel(name = "客户账号等级(1普通用户,2vip用户)")
     private String customerAccountLevel;
 
     public void setCustomerId(Long customerId) 
@@ -114,12 +114,12 @@ public class SysSystemCustomer extends BaseEntity
     {
         return sex;
     }
-    public void setAge(Integer age)
+    public void setAge(Integer age) 
     {
         this.age = age;
     }
 
-    public Integer getAge()
+    public Integer getAge() 
     {
         return age;
     }
@@ -132,12 +132,12 @@ public class SysSystemCustomer extends BaseEntity
     {
         return birthday;
     }
-    public void setCustomerAccountBalance(Integer customerAccountBalance)
+    public void setCustomerAccountBalance(Integer customerAccountBalance) 
     {
         this.customerAccountBalance = customerAccountBalance;
     }
 
-    public Integer getCustomerAccountBalance()
+    public Integer getCustomerAccountBalance() 
     {
         return customerAccountBalance;
     }
