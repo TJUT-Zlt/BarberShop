@@ -54,7 +54,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectUserVo">
-        select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
+        select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex,
+        u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
 		u.birthday, u.salary, u.commission, u.today_status,
         d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status as dept_status,
         r.role_id, r.role_name, r.role_key, r.role_sort, r.data_scope, r.status as role_status
@@ -214,8 +215,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="remark != null">remark = #{remark},</if>
 			<!--自定义内容 开始 -->
 			<if test="birthday != null">birthday = #{birthday},</if>
-			<if test="salary != null and salary != ''">salary = #{salary},</if>
-			<if test="commission != null and commission != ''">commission = #{commission},</if>
+			<if test="salary != null">salary = #{salary},</if>
+			<if test="commission != null ">commission = #{commission},</if>
 			<if test="todayStatus != null and todayStatus != ''">today_status = #{todayStatus},</if>
 			<!--自定义内容 结束 -->
  			update_time = sysdate()

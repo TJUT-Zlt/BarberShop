@@ -97,7 +97,6 @@
             <groupId>com.barbershop</groupId>
             <artifactId>barbershop-modules-system</artifactId>
             <version>3.6.4</version>
-            <scope>compile</scope>
         </dependency>
 
     </dependencies>

@@ -35,7 +35,6 @@ public class BizOrder extends BaseEntity
     @Excel(name = "服务价格")
     private Integer orderPrice;
 
-
     private SysUser sysUser;
 
     private BizCustomer bizCustomer;

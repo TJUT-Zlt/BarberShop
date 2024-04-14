@@ -108,6 +108,7 @@ public class SysUser extends BaseEntity
     /** 员工状态(0在岗 1休假 2出差 3离职)  自定义字典类型数据 */
     @Excel(name = "员工状态", readConverterExp = "0=在岗,1=休假,2=出差,3=离职")
     private String todayStatus;
+
     public void setBirthday(Date birthday)
     {
         this.birthday = birthday;

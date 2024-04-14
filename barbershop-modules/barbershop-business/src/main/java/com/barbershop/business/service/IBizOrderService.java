@@ -2,6 +2,7 @@ package com.barbershop.business.service;
 
 import java.util.List;
 import com.barbershop.business.domain.BizOrder;
+import com.barbershop.system.api.domain.SysUser;
 
 /**
  * 订单管理Service接口
@@ -58,4 +59,6 @@ public interface IBizOrderService
      * @return 结果
      */
     public int deleteBizOrderByOrderId(Long orderId);
+
+
 }

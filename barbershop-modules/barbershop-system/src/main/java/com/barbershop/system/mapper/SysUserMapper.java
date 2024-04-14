@@ -2,7 +2,7 @@ package com.barbershop.system.mapper;
 
 import java.util.List;
 
-import com.barbershop.system.domain.SysPost;
+
 import org.apache.ibatis.annotations.Param;
 import com.barbershop.system.api.domain.SysUser;
 

@@ -56,7 +56,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2024 ruoyi.vip All Rights Reserved.</span>
+      <span>@2024.04 abel个人学习项目</span>
     </div>
   </div>
 </template>

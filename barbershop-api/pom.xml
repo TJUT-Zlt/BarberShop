@@ -10,6 +10,7 @@
 
     <modules>
         <module>barbershop-api-system</module>
+        <module>barbershop-api-business</module>
     </modules>
 
     <artifactId>barbershop-api</artifactId>

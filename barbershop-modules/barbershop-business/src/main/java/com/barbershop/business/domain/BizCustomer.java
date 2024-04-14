@@ -18,6 +18,7 @@ public class BizCustomer extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 客户ID */
+    @Excel(name = "客户ID")
     private Long customerId;
 
     /** 所属分店ID */
@@ -33,7 +34,7 @@ public class BizCustomer extends BaseEntity
     private String nickName;
 
     /** 性别 */
-    @Excel(name = "性别")
+    @Excel(name = "性别",readConverterExp = "0=男,1=女,2=未知")
     private String sex;
 
     /** 年龄 */
@@ -62,11 +63,11 @@ public class BizCustomer extends BaseEntity
     private String phonenumber;
 
     /** 账号状态(1正常,0停用) */
-    @Excel(name = "账号状态(1正常,0停用)")
+    @Excel(name = "账号状态", readConverterExp = "0=正常,1=停用")
     private String customerAccountStatus;
 
-    /** 客户账号等级(1普通用户,2vip用户) */
-    @Excel(name = "客户账号等级(1普通用户,2vip用户)")
+    /** 客户账号等级(0普通用户,1vip用户) */
+    @Excel(name = "客户账号等级", readConverterExp = "0=普通用户,1=vip用户")
     private String customerAccountLevel;
 
     public void setCustomerId(Long customerId) 

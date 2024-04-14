@@ -18,6 +18,7 @@ public class BizTool extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 工具ID */
+    @Excel(name = "工具ID")
     private Long toolId;
 
     /** 工具所属部门ID */

@@ -1,7 +1,14 @@
 package com.barbershop.business.service.impl;
 
 import java.util.List;
+
+import com.barbershop.business.domain.BizCustomer;
+import com.barbershop.business.mapper.BizCustomerMapper;
+import com.barbershop.common.core.constant.SecurityConstants;
+import com.barbershop.common.core.domain.R;
 import com.barbershop.common.core.utils.DateUtils;
+import com.barbershop.system.api.RemoteUserService;
+import com.barbershop.system.api.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.barbershop.business.mapper.BizOrderMapper;
@@ -19,6 +26,10 @@ public class BizOrderServiceImpl implements IBizOrderService
 {
     @Autowired
     private BizOrderMapper bizOrderMapper;
+
+    @Autowired
+    private BizCustomerMapper bizCustomerMapper;
+
 
     /**
      * 查询订单管理
@@ -54,6 +65,17 @@ public class BizOrderServiceImpl implements IBizOrderService
     public int insertBizOrder(BizOrder bizOrder)
     {
         bizOrder.setCreateTime(DateUtils.getNowDate());
+
+        Integer orderPrice = bizOrder.getOrderPrice();
+
+        BizCustomer bizCustomer = bizCustomerMapper.selectBizCustomerByCustomerId(bizOrder.getCustomerId());
+        bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance() - orderPrice);
+        bizCustomerMapper.updateBizCustomer(bizCustomer);
+
+//        SysUser sysUser = sysUserMapper.selectUserById(bizOrder.getUserId());
+//        sysUser.setCommission(sysUser.getCommission() + orderPrice);
+//        sysUserMapper.updateUser(sysUser);
+
         return bizOrderMapper.insertBizOrder(bizOrder);
     }
 
@@ -93,4 +115,5 @@ public class BizOrderServiceImpl implements IBizOrderService
     {
         return bizOrderMapper.deleteBizOrderByOrderId(orderId);
     }
+
 }
