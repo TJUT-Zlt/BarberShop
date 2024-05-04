@@ -1,7 +1,16 @@
 package com.barbershop.business.service.impl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.barbershop.business.vo.BizCustomerReportVO;
 import com.barbershop.common.core.utils.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.barbershop.business.mapper.BizCustomerMapper;
@@ -98,4 +107,55 @@ public class BizCustomerServiceImpl implements IBizCustomerService
     public List<BizCustomer> selectBizCustomerAll() {
         return bizCustomerMapper.selectBizCustomerAll();
     }
+
+    /**
+     * 统计指定时间区间内的客户数据
+     * @param begin
+     * @param end
+     * @return
+     */
+    @Override
+    public BizCustomerReportVO getBizCustomerStatistics(LocalDate begin, LocalDate end) {
+        //存放从begin到end之间的每天对应的日期
+        List<LocalDate> dateList = new ArrayList<>();
+
+        dateList.add(begin);
+
+        while (!begin.equals(end)) {
+            begin = begin.plusDays(1);
+            dateList.add(begin);
+        }
+
+        List<Integer> newBizCustomerList = new ArrayList<>();
+
+        List<Integer> totalBizCustomerList = new ArrayList<>();
+
+        for (LocalDate date : dateList) {
+            LocalDateTime beginTime = LocalDateTime.of(date, LocalTime.MIN);
+            LocalDateTime endTime = LocalDateTime.of(date, LocalTime.MAX);
+
+            Map map = new HashMap();
+            map.put("end", endTime);
+
+            //总用户数量
+            Integer totalBizCustomer = bizCustomerMapper.countByMap(map);
+
+            map.put("begin", beginTime);
+            //新增用户数量
+            Integer newBizCustomer = bizCustomerMapper.countByMap(map);
+
+            totalBizCustomerList.add(totalBizCustomer);
+            newBizCustomerList.add(newBizCustomer);
+        }
+
+        //封装结果数据
+        return BizCustomerReportVO
+                .builder()
+                .dateList(StringUtils.join(dateList, ","))
+                .totalBizCustomerList(StringUtils.join(totalBizCustomerList, ","))
+                .newBizCustomerList(StringUtils.join(newBizCustomerList, ","))
+                .build();
+    }
+
+
 }

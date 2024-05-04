@@ -1,8 +1,9 @@
 package com.barbershop.business.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import com.barbershop.business.domain.BizCustomer;
-import com.barbershop.system.api.domain.SysUser;
+import com.barbershop.business.vo.BizCustomerReportVO;
 
 /**
  * 客户管理Service接口
@@ -66,4 +67,11 @@ public interface IBizCustomerService
      */
     public List<BizCustomer> selectBizCustomerAll();
 
+    /**
+     * 统计指定时间区间内的订单数据
+     * @param begin
+     * @param end
+     * @return
+     */
+    public BizCustomerReportVO getBizCustomerStatistics(LocalDate begin, LocalDate end);
 }

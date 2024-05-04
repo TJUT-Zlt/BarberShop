@@ -48,7 +48,11 @@ public class BizCustomer extends BaseEntity
 
     /** 账号余额 */
     @Excel(name = "账号余额")
-    private Integer customerAccountBalance;
+    private Double customerAccountBalance;
+
+    /** 累计消费 */
+    @Excel(name = "累计消费")
+    private Double cumulativeConsumption;
 
     /** 偏好 */
     @Excel(name = "偏好")
@@ -133,16 +137,25 @@ public class BizCustomer extends BaseEntity
     {
         return birthday;
     }
-    public void setCustomerAccountBalance(Integer customerAccountBalance) 
+    public void setCustomerAccountBalance(Double customerAccountBalance)
     {
         this.customerAccountBalance = customerAccountBalance;
     }
 
-    public Integer getCustomerAccountBalance() 
+    public Double getCustomerAccountBalance()
     {
         return customerAccountBalance;
     }
-    public void setPerferences(String perferences) 
+
+    public Double getCumulativeConsumption() {
+        return cumulativeConsumption;
+    }
+
+    public void setCumulativeConsumption(Double cumulativeConsumption) {
+        this.cumulativeConsumption = cumulativeConsumption;
+    }
+
+    public void setPerferences(String perferences)
     {
         this.perferences = perferences;
     }
@@ -199,6 +212,7 @@ public class BizCustomer extends BaseEntity
             .append("age", getAge())
             .append("birthday", getBirthday())
             .append("customerAccountBalance", getCustomerAccountBalance())
+            .append("cumulativeConsumption",getCumulativeConsumption())
             .append("perferences", getPerferences())
             .append("email", getEmail())
             .append("phonenumber", getPhonenumber())

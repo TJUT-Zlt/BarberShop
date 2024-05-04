@@ -133,3 +133,11 @@ export function deptTreeSelect() {
     method: 'get'
   })
 }
+
+// 客户总览
+export function getOverviewSysUser(){
+  return request({
+    url: '/business/BizWorkSpace/overviewSysUser',
+    method: 'get'
+})
+}

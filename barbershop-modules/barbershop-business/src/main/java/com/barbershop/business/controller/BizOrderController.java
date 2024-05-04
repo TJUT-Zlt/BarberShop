@@ -1,11 +1,17 @@
 package com.barbershop.business.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.barbershop.business.service.IBizCustomerService;
+import com.barbershop.business.vo.OrderReportVO;
+import com.barbershop.business.vo.TurnoverReportVO;
 import com.barbershop.common.core.utils.StringUtils;
+import com.barbershop.system.api.RemoteUserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,6 +44,9 @@ public class BizOrderController extends BaseController
     private IBizOrderService bizOrderService;
     @Autowired
     private IBizCustomerService bizCustomerService;
+
+    @Autowired
+    private RemoteUserService remoteUserService;
 
     /**
      * 查询订单管理列表
@@ -72,7 +81,6 @@ public class BizOrderController extends BaseController
     public AjaxResult getInfo(@PathVariable(value = "orderId" , required = false) Long orderId)
     {
         AjaxResult ajax = AjaxResult.success();
-        //ajax.put("bizCustomers",bizCustomerService.selectBizCustomerAll());
         if (StringUtils.isNotNull(orderId)){
             BizOrder bizOrder = bizOrderService.selectBizOrderByOrderId(orderId);
             ajax.put(AjaxResult.DATA_TAG,bizOrder);
@@ -88,6 +96,9 @@ public class BizOrderController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody BizOrder bizOrder)
     {
+        if(bizOrderService.insertBizOrder(bizOrder) < 0){
+            return AjaxResult.error("该客户账户余额不足");
+        }
         return toAjax(bizOrderService.insertBizOrder(bizOrder));
     }
 
@@ -123,5 +134,44 @@ public class BizOrderController extends BaseController
     {
         return success(bizCustomerService.selectBizCustomerAll());
     }
+
+    /**
+     * 查询用户列表
+     * @return
+     */
+    @RequiresPermissions("business:BizOrder:list")
+    @GetMapping("/sysUserList")
+    public AjaxResult SysUserList()
+    {
+        return success(remoteUserService.selectSysUserAll());
+    }
+
+    /**
+     * 营业额统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/turnoverStatistics")
+    public AjaxResult turnoverStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        return success(bizOrderService.getTurnoverStatistics(begin,end));
+    }
+
+    /**
+     * 订单统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/ordersStatistics")
+    public AjaxResult ordersStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd")  LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        return success(bizOrderService.getOrderStatistics(begin,end));
+    }
+
+
 
 }

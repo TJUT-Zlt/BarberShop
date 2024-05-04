@@ -5,17 +5,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.nacos.shaded.io.grpc.NameResolver;
+import com.barbershop.business.api.RemoteBizCustomerService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.barbershop.common.core.domain.R;
 import com.barbershop.common.core.utils.StringUtils;
@@ -317,10 +313,55 @@ public class SysUserController extends BaseController
     /**
      * 获取部门树列表
      */
-    @RequiresPermissions("system:user:list")
+//    @RequiresPermissions("system:user:list")
     @GetMapping("/deptTree")
     public AjaxResult deptTree(SysDept dept)
     {
         return success(deptService.selectDeptTreeList(dept));
     }
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    @GetMapping("/selectSysUserAll")
+    public R<List<SysUser>> selectSysUserAll()
+    {
+        List<SysUser> sysUserList = userService.selectSysUserAll();
+        return R.ok(sysUserList);
+    }
+
+    /**
+     * 根据用户id查询用户
+     * @param userId
+     * @return
+     */
+    @GetMapping("/selectSysUserById/{userId}")
+    public  R<SysUser> selectSysUserById(@PathVariable("userId") Long userId){
+        SysUser sysUser = userService.selectUserById(userId);
+        return R.ok(sysUser);
+    }
+
+    /**
+     * 修改用户信息
+     * @param sysUser
+     * @return
+     */
+    @PutMapping("/updateSysUser")
+    public  R<Integer> updateSysUser(@RequestBody SysUser sysUser){
+        int result = userService.updateUser(sysUser);
+        return R.ok(result);
+    }
+
+    /**
+     * 查询用户总览
+     * @param todayStatus
+     * @return
+     */
+    @GetMapping ("/selectSysUserByTodayStatus/{todayStatus}")
+    public  R<Integer> selectSysUserByTodayStatus(@PathVariable("todayStatus") char todayStatus){
+        Integer result = userService.selectSysUserByTodayStatus(todayStatus);
+        return R.ok(result);
+    }
+
 }

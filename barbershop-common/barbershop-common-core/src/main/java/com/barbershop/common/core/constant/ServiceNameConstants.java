@@ -21,4 +21,10 @@ public class ServiceNameConstants
      * 文件服务的serviceid
      */
     public static final String FILE_SERVICE = "barbershop-file";
+
+    /**
+     * 自定义服务的serviceid
+     */
+    public static final String BUSINESS_SERVICE = "barbershop-business";
+
 }

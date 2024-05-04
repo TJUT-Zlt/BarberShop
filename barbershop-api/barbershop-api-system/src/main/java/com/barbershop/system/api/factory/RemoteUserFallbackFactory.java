@@ -9,6 +9,8 @@ import com.barbershop.system.api.RemoteUserService;
 import com.barbershop.system.api.domain.SysUser;
 import com.barbershop.system.api.model.LoginUser;
 
+import java.util.List;
+
 /**
  * 用户服务降级处理
  * 
@@ -38,8 +40,23 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
             }
 
             @Override
-            public R<SysUser> selectAllUserInfo(String source) {
-                return R.fail("查询所有用户失败:" + throwable.getMessage());
+            public R<List<SysUser>> selectSysUserAll() {
+                return R.fail("查询用户失败" + throwable.getMessage());
+            }
+
+            @Override
+            public R<SysUser> selectSysUserById(Long userId) {
+                return R.fail("根据用户ID查询用户失败" + throwable.getMessage());
+            }
+
+            @Override
+            public R<Integer> updateSysUser(SysUser sysUser) {
+                return R.fail("更新用户失败" + throwable.getMessage());
+            }
+
+            @Override
+            public R<Integer> selectSysUserByTodayStatus(char todayStatus) {
+                return R.fail("根据状态查询用户失败" + throwable.getMessage());
             }
 
 

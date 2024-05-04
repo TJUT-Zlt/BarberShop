@@ -1,6 +1,8 @@
 package com.barbershop.business.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 import com.barbershop.business.domain.BizOrder;
 
 /**
@@ -58,4 +60,19 @@ public interface BizOrderMapper
      * @return 结果
      */
     public int deleteBizOrderByOrderIds(Long[] orderIds);
+
+    /**
+     * 根据动态条件统计营业额数据
+     * @param map
+     * @return
+     */
+    public Double orderSumByMap(Map map);
+
+    /**
+     * 根据动态条件统计订单数量
+     * @param map
+     * @return
+     */
+    public Integer orderCountByMap(Map map);
+
 }

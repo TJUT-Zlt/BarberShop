@@ -1,7 +1,11 @@
 package com.barbershop.business.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import com.barbershop.business.domain.BizOrder;
+import com.barbershop.business.vo.OrderReportVO;
+import com.barbershop.business.vo.TurnoverReportVO;
+import com.barbershop.common.core.domain.R;
 import com.barbershop.system.api.domain.SysUser;
 
 /**
@@ -60,5 +64,21 @@ public interface IBizOrderService
      */
     public int deleteBizOrderByOrderId(Long orderId);
 
+
+    /**
+     * 统计指定时间区间内的营业额数据
+     * @param begin
+     * @param end
+     * @return
+     */
+    public TurnoverReportVO getTurnoverStatistics(LocalDate begin, LocalDate end);
+
+    /**
+     * 统计指定时间区间内的订单数据
+     * @param begin
+     * @param end
+     * @return
+     */
+    public OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end);
 
 }

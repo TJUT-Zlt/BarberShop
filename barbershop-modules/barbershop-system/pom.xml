@@ -90,6 +90,12 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.barbershop</groupId>
+            <artifactId>barbershop-api-business</artifactId>
+            <version>3.6.4</version>
+            <scope>compile</scope>
+        </dependency>
 
 
     </dependencies>

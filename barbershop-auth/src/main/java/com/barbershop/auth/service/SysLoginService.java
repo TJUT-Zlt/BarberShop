@@ -85,6 +85,9 @@ public class SysLoginService
         }
         
         LoginUser userInfo = userResult.getData();
+
+
+
         SysUser user = userResult.getData().getSysUser();
         if (UserStatus.DELETED.getCode().equals(user.getDelFlag()))
         {

@@ -16,22 +16,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
-//        (scanBasePackages = {"com.barbershop.business", "com.barbershop.system"})
-//@MapperScan({"com.barbershop.business.mapper","com.barbershop.system.mapper"})
 public class RuoYiBusinessApplication
 {
     public static void main(String[] args)
     {
         SpringApplication.run(RuoYiBusinessApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  自定义业务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
-                " .-------.       ____     __        \n" +
-                " |  _ _   \\      \\   \\   /  /    \n" +
-                " | ( ' )  |       \\  _. /  '       \n" +
-                " |(_ o _) /        _( )_ .'         \n" +
-                " | (_,_).' __  ___(_ o _)'          \n" +
-                " |  |\\ \\  |  ||   |(_,_)'         \n" +
-                " |  | \\ `'   /|   `-'  /           \n" +
-                " |  |  \\    /  \\      /           \n" +
-                " ''-'   `'-'    `-..-'              ");
+        System.out.println("(♥◠‿◠)ﾉﾞ  自定义业务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n");
     }
 }

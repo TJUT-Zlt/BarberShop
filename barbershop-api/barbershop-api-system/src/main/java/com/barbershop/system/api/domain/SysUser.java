@@ -99,11 +99,15 @@ public class SysUser extends BaseEntity
 
     /** 薪水 */
     @Excel(name = "薪水")
-    private Integer salary;
+    private Double salary;
 
     /** 提成 */
     @Excel(name = "提成")
-    private Integer commission;
+    private Double commission;
+
+    /** 实际收入 */
+    @Excel(name = "实际收入")
+    private Double realIncome;
 
     /** 员工状态(0在岗 1休假 2出差 3离职)  自定义字典类型数据 */
     @Excel(name = "员工状态", readConverterExp = "0=在岗,1=休假,2=出差,3=离职")
@@ -118,24 +122,33 @@ public class SysUser extends BaseEntity
     {
         return birthday;
     }
-    public void setSalary(Integer salary)
+    public void setSalary(Double salary)
     {
         this.salary = salary;
     }
 
-    public Integer getSalary()
+    public Double getSalary()
     {
         return salary;
     }
-    public void setCommission(Integer commission)
+    public void setCommission(Double commission)
     {
         this.commission = commission;
     }
 
-    public Integer getCommission()
+    public Double getCommission()
     {
         return commission;
     }
+
+    public Double getRealIncome() {
+        return realIncome;
+    }
+
+    public void setRealIncome(Double realIncome) {
+        this.realIncome = realIncome;
+    }
+
     public void setTodayStatus(String todayStatus)
     {
         this.todayStatus = todayStatus;
@@ -379,6 +392,7 @@ public class SysUser extends BaseEntity
             .append("birthday", getBirthday())
             .append("salary", getSalary())
             .append("commission", getCommission())
+            .append("realIncome",getRealIncome())
             .append("todayStatus", getTodayStatus())
             .toString();
     }

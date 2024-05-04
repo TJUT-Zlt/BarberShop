@@ -111,4 +111,29 @@
                     #{orderId}
                 </foreach>
             </delete>
+
+        <select id="orderSumByMap" resultType="java.lang.Double">
+            select sum(order_price) from biz_order
+            <where>
+                <if test="begin != null">
+                    and create_time &gt; #{begin}
+                </if>
+                <if test="end != null">
+                    and create_time &lt; #{end}
+                </if>
+            </where>
+        </select>
+
+        <select id="orderCountByMap" resultType="java.lang.Integer">
+            select count(order_id) from biz_order
+            <where>
+                <if test="begin != null">
+                    and create_time > #{begin}
+                </if>
+                <if test="end != null">
+                    and create_time &lt; #{end}
+                </if>
+            </where>
+        </select>
+
         </mapper>

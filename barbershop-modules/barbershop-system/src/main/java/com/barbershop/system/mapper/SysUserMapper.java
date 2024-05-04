@@ -1,6 +1,7 @@
 package com.barbershop.system.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 
 import org.apache.ibatis.annotations.Param;
@@ -133,5 +134,10 @@ public interface SysUserMapper
      */
     public List<SysUser> selectSysUserAll();
 
-
+    /**
+     * 查询用户总览
+     * @param todayStatus
+     * @return
+     */
+    public Integer selectSysUserByTodayStatus(char todayStatus);
 }

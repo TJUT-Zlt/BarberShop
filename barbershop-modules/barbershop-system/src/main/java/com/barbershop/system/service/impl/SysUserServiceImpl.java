@@ -551,4 +551,14 @@ public class SysUserServiceImpl implements ISysUserService
         return userMapper.selectSysUserAll();
     }
 
+    /**
+     * 根据状态查询用户
+     * @param todayStatus
+     * @return
+     */
+    @Override
+    public Integer selectSysUserByTodayStatus(char todayStatus) {
+        return userMapper.selectSysUserByTodayStatus(todayStatus);
+    }
+
 }

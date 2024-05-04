@@ -3,6 +3,8 @@ package com.barbershop.business.controller;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import com.barbershop.common.core.domain.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,4 +104,7 @@ public class BizToolController extends BaseController
     {
         return toAjax(bizToolService.deleteBizToolByToolIds(toolIds));
     }
+
+
+
 }

@@ -33,7 +33,7 @@ public class BizOrder extends BaseEntity
 
     /** 服务价格 */
     @Excel(name = "服务价格")
-    private Integer orderPrice;
+    private Double orderPrice;
 
     private SysUser sysUser;
 
@@ -76,12 +76,12 @@ public class BizOrder extends BaseEntity
     {
         return orderType;
     }
-    public void setOrderPrice(Integer orderPrice) 
+    public void setOrderPrice(Double orderPrice)
     {
         this.orderPrice = orderPrice;
     }
 
-    public Integer getOrderPrice() 
+    public Double getOrderPrice()
     {
         return orderPrice;
     }

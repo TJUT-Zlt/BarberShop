@@ -12,6 +12,7 @@
         <result property="age"    column="age"    />
         <result property="birthday"    column="birthday"    />
         <result property="customerAccountBalance"    column="customer_account_balance"    />
+        <result property="cumulativeConsumption"     column="cumulative_consumption"      />
         <result property="perferences"    column="perferences"    />
         <result property="email"    column="email"    />
         <result property="phonenumber"    column="phonenumber"    />
@@ -25,7 +26,8 @@
     </resultMap>
 
     <sql id="selectBizCustomerVo">
-        select c.customer_id, c.customer_dept_id, c.customer_name, c.nick_name, c.sex, c.age, c.birthday,c.customer_account_balance, c.perferences, c.email,c.phonenumber,
+        select c.customer_id, c.customer_dept_id, c.customer_name, c.nick_name, c.sex, c.age, c.birthday,
+               c.customer_account_balance,c.cumulative_consumption,c.perferences, c.email,c.phonenumber,
                c.customer_account_status,c.customer_account_level,c.create_by,c.create_time, c.update_by,c.update_time, c.remark
         from biz_customer c
     </sql>
@@ -54,6 +56,7 @@
             <if test="age != null">age,</if>
             <if test="birthday != null">birthday,</if>
             <if test="customerAccountBalance != null">customer_account_balance,</if>
+            <if test="cumulativeConsumption != null">cumulative_consumption,</if>
             <if test="perferences != null">perferences,</if>
             <if test="email != null">email,</if>
             <if test="phonenumber != null">phonenumber,</if>
@@ -73,6 +76,7 @@
             <if test="age != null">#{age},</if>
             <if test="birthday != null">#{birthday},</if>
             <if test="customerAccountBalance != null">#{customerAccountBalance},</if>
+            <if test="cumulativeConsumption != null">#{cumulativeConsumption},</if>
             <if test="perferences != null">#{perferences},</if>
             <if test="email != null">#{email},</if>
             <if test="phonenumber != null">#{phonenumber},</if>
@@ -96,6 +100,7 @@
             <if test="age != null">age = #{age},</if>
             <if test="birthday != null">birthday = #{birthday},</if>
             <if test="customerAccountBalance != null">customer_account_balance = #{customerAccountBalance},</if>
+            <if test="cumulativeConsumption != null">cumulative_consumption = #{cumulativeConsumption},</if>
             <if test="perferences != null">perferences = #{perferences},</if>
             <if test="email != null">email = #{email},</if>
             <if test="phonenumber != null">phonenumber = #{phonenumber},</if>
@@ -123,6 +128,21 @@
 
     <select id="selectBizCustomerAll" resultMap="BizCustomerResult">
         <include refid="selectBizCustomerVo"/>
+    </select>
+
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(customer_id) from biz_customer
+        <where>
+            <if test="begin != null">
+                and create_time &gt; #{begin}
+            </if>
+            <if test="end != null">
+                and create_time &lt; #{end}
+            </if>
+            <if test="customerAccountLevel != null">
+                and customer_account_level = #{customerAccountLevel}
+            </if>
+        </where>
     </select>
 
 </mapper>

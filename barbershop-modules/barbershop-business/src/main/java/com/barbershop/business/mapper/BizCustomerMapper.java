@@ -1,6 +1,8 @@
 package com.barbershop.business.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 import com.barbershop.business.domain.BizCustomer;
 import com.barbershop.system.api.domain.SysUser;
 
@@ -66,4 +68,10 @@ public interface BizCustomerMapper
      */
     public List<BizCustomer> selectBizCustomerAll();
 
+    /**
+     * 根据动态条件统计客户数量
+     * @param map
+     * @return
+     */
+    public Integer countByMap(Map map);
 }

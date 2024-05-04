@@ -1,9 +1,14 @@
 package com.barbershop.business.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import com.barbershop.common.core.domain.R;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -102,4 +107,20 @@ public class BizCustomerController extends BaseController
     {
         return toAjax(bizCustomerService.deleteBizCustomerByCustomerIds(customerIds));
     }
+
+    /**
+     * 客户统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/bizCustomerStatistics")
+    public AjaxResult userStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        return success(bizCustomerService.getBizCustomerStatistics(begin,end));
+    }
+
+
+
 }

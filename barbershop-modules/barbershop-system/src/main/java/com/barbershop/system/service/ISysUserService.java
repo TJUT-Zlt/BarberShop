@@ -2,6 +2,7 @@ package com.barbershop.system.service;
 
 import java.util.List;
 import com.barbershop.system.api.domain.SysUser;
+import io.swagger.models.auth.In;
 
 /**
  * 用户 业务层
@@ -209,5 +210,13 @@ public interface ISysUserService
      * @return
      */
     public List<SysUser> selectSysUserAll();
+
+     /**
+     * 根据状态查询用户
+     * @param todayStatus
+     * @return
+     */
+    public Integer selectSysUserByTodayStatus(char todayStatus);
+
 
 }

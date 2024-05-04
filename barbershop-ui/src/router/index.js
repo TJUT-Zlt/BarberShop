@@ -71,7 +71,25 @@ export const constantRoutes = [
         component: () => import('@/views/index'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      },
+      //自定义
+      {
+        path: "statistics",
+        component: () =>import( "@/views/business/BizChart/index.vue"),
+        hidden: true
+      },
+      //自定义
+      {
+        path: "BizCustomer",
+        component: () =>import( "@/views/business/BizCustomer/index.vue"),
+        hidden: true,
+      },
+      {
+        path: "SysUser",
+        component: () =>import( "@/views/system/user/index.vue"),
+        hidden: true,
       }
+
     ]
   },
   {
@@ -87,7 +105,10 @@ export const constantRoutes = [
         meta: { title: '个人中心', icon: 'user' }
       }
     ]
-  }
+  },
+
+
+
 ]
 
 // 动态路由，基于用户权限动态去加载
@@ -161,7 +182,7 @@ export const dynamicRoutes = [
         meta: { title: '修改生成配置', activeMenu: '/tool/gen' }
       }
     ]
-  }
+  },
 ]
 
 // 防止连续点击多次路由报错

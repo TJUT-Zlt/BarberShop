@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="birthday"    column="birthday"    />
 		<result property="salary"    column="salary"    />
 		<result property="commission"    column="commission"    />
+		<result property="realIncome"    column="real_income"    />
 		<result property="todayStatus"    column="today_status"    />
 		<!--自定义内容 结束-->
         <association property="dept"    javaType="SysDept"         resultMap="deptResult" />
@@ -56,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="selectUserVo">
         select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password, u.sex,
         u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
-		u.birthday, u.salary, u.commission, u.today_status,
+		u.birthday, u.salary, u.commission,u.real_income, u.today_status,
         d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.status as dept_status,
         r.role_id, r.role_name, r.role_key, r.role_sort, r.data_scope, r.status as role_status
         from sys_user u
@@ -67,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <select id="selectUserList" parameterType="SysUser" resultMap="SysUserResult">
 		select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
-		u.birthday, u.salary, u.commission, u.today_status,
+		u.birthday, u.salary, u.commission,u.real_income, u.today_status,
 		d.dept_name, d.leader from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
 		where u.del_flag = '0'
@@ -171,6 +172,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="birthday != null">birthday,</if>
 			<if test="salary != null and salary != ''">salary,</if>
 			<if test="commission != null and commission != ''">commission,</if>
+			<if test="realIncome != null and realIncome != ''">real_income,</if>
 			<if test="todayStatus != null and todayStatus != ''">today_status,</if>
 			<!--自定义内容 结束 -->
  			create_time
@@ -191,6 +193,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="birthday != null">#{birthday},</if>
 			<if test="salary != null and salary != ''">#{salary},</if>
 			<if test="commission != null and commission != ''">#{commission},</if>
+			<if test="realIncome != null and realIncome != ''">#{realIncome},</if>
 			<if test="todayStatus != null and todayStatus != ''">#{todayStatus},</if>
 			<!--自定义内容 结束 -->
  			sysdate()
@@ -217,6 +220,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="birthday != null">birthday = #{birthday},</if>
 			<if test="salary != null">salary = #{salary},</if>
 			<if test="commission != null ">commission = #{commission},</if>
+			<if test="realIncome != null ">real_income = #{realIncome},</if>
 			<if test="todayStatus != null and todayStatus != ''">today_status = #{todayStatus},</if>
 			<!--自定义内容 结束 -->
  			update_time = sysdate()
@@ -249,6 +253,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectSysUserAll" resultMap="SysUserResult">
 		<include refid="selectUserVo"/>
+	</select>
+
+	<select id="selectSysUserByTodayStatus" resultType="java.lang.Integer">
+		select count(user_id) from sys_user
+		where today_status = #{todayStatus}
 	</select>
 
 

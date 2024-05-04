@@ -1,6 +1,9 @@
 package com.barbershop.business.mapper;
 
 import java.util.List;
+import java.util.Map;
+
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.barbershop.business.domain.BizTool;
 
 /**
@@ -58,4 +61,12 @@ public interface BizToolMapper
      * @return 结果
      */
     public int deleteBizToolByToolIds(Long[] toolIds);
+
+    /**
+     * 查询工具总览
+     * @param toolStatus
+     * @return
+     */
+    public Integer selectSysToolByToolStatus(char toolStatus);
+
 }

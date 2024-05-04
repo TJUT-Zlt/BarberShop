@@ -58,4 +58,6 @@ public interface IBizToolService
      * @return 结果
      */
     public int deleteBizToolByToolId(Long toolId);
+
+
 }

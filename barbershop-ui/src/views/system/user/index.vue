@@ -153,11 +153,11 @@
               ></el-switch>
             </template>
           </el-table-column>
-          <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
+          <!-- <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
             <template slot-scope="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
-          </el-table-column>
+          </el-table-column> -->
 
           <!-- 自定义内容 开始-->
           <el-table-column label="生日" prop="birthday"  align="center" v-if="columns[6].visible" width="160">
@@ -169,6 +169,8 @@
           <el-table-column label="基本工资" key="salary" prop="salary" align="center" />
 
           <el-table-column label="提成" key="commission" prop="commission" align="center" />
+
+          <el-table-column label="实际收入" key="realIncome" prop="realIncome" align="center" />
 
           <!-- 字典类型数据显示 -->
           <el-table-column  label="员工状态" prop="todayStatus" align="center"  width="80">
@@ -348,7 +350,13 @@
 
          <el-col :span="12">
           <el-form-item label="提成" prop="commission">
-            <el-input v-model="form.commission" placeholder="请输入提成" />
+            <el-input v-model="form.commission" placeholder="请输入提成" :disabled="true"/>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="12">
+          <el-form-item label="实际收入" prop="realIncome">(实际收入=基本工资+提成*20%)
+            <el-input v-model="form.realIncome" placeholder="请输入实际收入" :disabled="true"/>
           </el-form-item>
         </el-col>
 
@@ -493,8 +501,9 @@ export default {
         { key: 7, label: `生日`, visible: true },
         { key: 8, label: `基本工资`, visible: true },
         { key: 9, label: `提成`, visible: true },
-        { key: 10, label: `员工状态`, visible: true },
-        { key: 11, label: `性别`, visible: true },
+        { key: 10, label: `实际收入`, visible: true },
+        { key: 11, label: `员工状态`, visible: true },
+        { key: 12, label: `性别`, visible: true },
         // 自定义内容 结束
       ],
       // 表单校验
@@ -602,6 +611,7 @@ export default {
         birthday: undefined,
         salary: undefined,
         commission: undefined,
+        realIncome: undefined,
         todayStatus: undefined
       };
       this.resetForm("form");

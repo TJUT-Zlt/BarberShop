@@ -32,6 +32,19 @@
                 <div class="pull-right">{{ roleGroup }}</div>
               </li>
               <li class="list-group-item">
+                <svg-icon icon-class="money" />基本工资
+                <div class="pull-right">{{ user.salary }}</div>
+              </li>
+              <li class="list-group-item">
+                <svg-icon icon-class="money" />提成
+                <div class="pull-right">{{ user.commission }}</div>
+              </li>
+              <li class="list-group-item">
+                <svg-icon icon-class="money" />实际收入(实际收入=基本工资+提成*20%)
+                <div class="pull-right">{{ user.realIncome }}</div>
+              </li>
+
+              <li class="list-group-item">
                 <svg-icon icon-class="date" />创建日期
                 <div class="pull-right">{{ user.createTime }}</div>
               </li>
