@@ -388,7 +388,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加客户管理";
+      this.title = "添加客户";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -397,7 +397,7 @@ export default {
       getBizCustomer(customerId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改客户管理";
+        this.title = "修改客户";
       });
     },
     /** 提交按钮 */

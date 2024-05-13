@@ -322,7 +322,7 @@
       handleAdd() {
         this.reset();
         this.open = true;
-        this.title = "添加工具管理";
+        this.title = "添加工具";
       },
       /** 修改按钮操作 */
       handleUpdate(row) {
@@ -331,7 +331,7 @@
         getBizTool(toolId).then(response => {
           this.form = response.data;
           this.open = true;
-          this.title = "修改工具管理";
+          this.title = "修改工具";
         });
       },
       /** 提交按钮 */

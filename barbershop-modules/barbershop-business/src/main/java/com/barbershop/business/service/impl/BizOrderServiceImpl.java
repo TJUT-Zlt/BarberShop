@@ -1,5 +1,6 @@
 package com.barbershop.business.service.impl;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -10,8 +11,8 @@ import java.util.Map;
 
 import com.barbershop.business.domain.BizCustomer;
 import com.barbershop.business.mapper.BizCustomerMapper;
-import com.barbershop.business.vo.OrderReportVO;
-import com.barbershop.business.vo.TurnoverReportVO;
+import com.barbershop.business.domain.vo.report.BizOrderReportVO;
+import com.barbershop.business.domain.vo.report.TurnoverReportVO;
 import com.barbershop.common.core.domain.R;
 import com.barbershop.common.core.utils.DateUtils;
 import com.barbershop.system.api.RemoteUserService;
@@ -78,22 +79,48 @@ public class BizOrderServiceImpl implements IBizOrderService
     {
         bizOrder.setCreateTime(DateUtils.getNowDate());
 
-        Double orderPrice = bizOrder.getOrderPrice();
+        BigDecimal orderPrice = bizOrder.getOrderPrice();
 
         BizCustomer bizCustomer = bizCustomerMapper.selectBizCustomerByCustomerId(bizOrder.getCustomerId());
-        if(bizCustomer.getCustomerAccountBalance() - orderPrice > 0){
-            bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance() - orderPrice);
-            bizCustomer.setCumulativeConsumption(bizCustomer.getCumulativeConsumption() + orderPrice);
+        if(bizCustomer.getCustomerAccountBalance().subtract(orderPrice).compareTo(BigDecimal.valueOf(0)) == 1 ){
+
+            bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance().subtract(orderPrice));
+            bizCustomer.setCumulativeConsumption(bizCustomer.getCumulativeConsumption().add(orderPrice));
             bizCustomerMapper.updateBizCustomer(bizCustomer);
 
             R<SysUser> sysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
             SysUser sysUser = sysUserR.getData();
-            sysUser.setCommission(sysUser.getCommission() + orderPrice);
-            sysUser.setRealIncome(sysUser.getRealIncome() + orderPrice * 0.2);
+            sysUser.setCommission(sysUser.getCommission().add(orderPrice));
+            sysUser.setRealIncome(sysUser.getRealIncome().add(orderPrice.multiply(BigDecimal.valueOf(0.20))));
             remoteUserService.updateSysUser(sysUser);
+
             return bizOrderMapper.insertBizOrder(bizOrder);
+        }else {
+            return -1;
         }
-        return -1;
+
+    }
+
+    /**
+     * 新增没有指定客户的订单管理
+     * @param bizOrder
+     * @return
+     */
+    @Transactional
+    @Override
+    public int insertBizOrderWithNoBizCustomer(BizOrder bizOrder) {
+        bizOrder.setCreateTime(DateUtils.getNowDate());
+
+        BigDecimal orderPrice = bizOrder.getOrderPrice();
+
+        R<SysUser> sysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
+        SysUser sysUser = sysUserR.getData();
+        sysUser.setCommission(sysUser.getCommission().add(orderPrice));
+        sysUser.setRealIncome(sysUser.getRealIncome().add(orderPrice.multiply(BigDecimal.valueOf(0.20))));
+        remoteUserService.updateSysUser(sysUser);
+
+        return bizOrderMapper.insertBizOrder(bizOrder);
+
     }
 
     /**
@@ -102,26 +129,70 @@ public class BizOrderServiceImpl implements IBizOrderService
      * @param bizOrder 订单管理
      * @return 结果
      */
+    // TODO: 2024/5/13  修改订单功能待完善 --目前仅仅允许修改价格和服务人员 --不支持修改客户
     @Transactional
     @Override
     public int updateBizOrder(BizOrder bizOrder)
     {
-        bizOrder.setUpdateTime(DateUtils.getNowDate());
 
-        Double orderPrice = bizOrder.getOrderPrice();
+        BizOrder oldBizOrder = bizOrderMapper.selectBizOrderByOrderId(bizOrder.getOrderId());
+
+        // 计算订单价格变化
+        BigDecimal orderPriceChange = bizOrder.getOrderPrice().subtract(oldBizOrder.getOrderPrice());
 
         BizCustomer bizCustomer = bizCustomerMapper.selectBizCustomerByCustomerId(bizOrder.getCustomerId());
-        bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance() - orderPrice);
-        bizCustomer.setCumulativeConsumption(bizCustomer.getCumulativeConsumption() + orderPrice);
-        bizCustomerMapper.updateBizCustomer(bizCustomer);
+        if(bizCustomer != null && bizOrder.getUserId() == oldBizOrder.getUserId() ){
+            bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance().subtract(orderPriceChange));
+            bizCustomer.setCumulativeConsumption(bizCustomer.getCumulativeConsumption().add(orderPriceChange));
+            bizCustomerMapper.updateBizCustomer(bizCustomer);
 
-        R<SysUser> sysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
-        SysUser sysUser = sysUserR.getData();
-        sysUser.setCommission(sysUser.getCommission() + orderPrice);
+            R<SysUser> sysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
+            SysUser sysUser = sysUserR.getData();
+            sysUser.setCommission(sysUser.getCommission().add(orderPriceChange));
+            sysUser.setRealIncome(sysUser.getRealIncome().add(orderPriceChange.multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(sysUser);
 
-        System.out.println(sysUser);
-        remoteUserService.updateSysUser(sysUser);
 
+        }else if(bizCustomer != null && bizOrder.getUserId() != oldBizOrder.getUserId()){
+            bizCustomer.setCustomerAccountBalance(bizCustomer.getCustomerAccountBalance().subtract(orderPriceChange));
+            bizCustomer.setCumulativeConsumption(bizCustomer.getCumulativeConsumption().add(orderPriceChange));
+            bizCustomerMapper.updateBizCustomer(bizCustomer);
+            //新的服务人员
+            R<SysUser> newSysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
+            SysUser newSysUser = newSysUserR.getData();
+            newSysUser.setCommission(newSysUser.getCommission().add(bizOrder.getOrderPrice()));
+            newSysUser.setRealIncome(newSysUser.getRealIncome().add(bizOrder.getOrderPrice().multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(newSysUser);
+            //原来的服务人员
+            R<SysUser> oldSysUserR = remoteUserService.selectSysUserById(oldBizOrder.getUserId());
+            SysUser oldSysUser = oldSysUserR.getData();
+            oldSysUser.setCommission(oldSysUser.getCommission().subtract(oldBizOrder.getOrderPrice()));
+            oldSysUser.setRealIncome(oldSysUser.getRealIncome().subtract(oldBizOrder.getOrderPrice().multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(oldSysUser);
+
+        }else if(bizCustomer == null && bizOrder.getUserId() == oldBizOrder.getUserId() ){
+            R<SysUser> sysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
+            SysUser sysUser = sysUserR.getData();
+            sysUser.setCommission(sysUser.getCommission().add(orderPriceChange));
+            sysUser.setRealIncome(sysUser.getRealIncome().add(orderPriceChange.multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(sysUser);
+        }else if(bizCustomer == null && bizOrder.getUserId() != oldBizOrder.getUserId()){
+            //新的服务人员
+            R<SysUser> newSysUserR = remoteUserService.selectSysUserById(bizOrder.getUserId());
+            SysUser newSysUser = newSysUserR.getData();
+            newSysUser.setCommission(newSysUser.getCommission().add(bizOrder.getOrderPrice()));
+            newSysUser.setRealIncome(newSysUser.getRealIncome().add(bizOrder.getOrderPrice().multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(newSysUser);
+            //原来的服务人员
+            R<SysUser> oldSysUserR = remoteUserService.selectSysUserById(oldBizOrder.getUserId());
+            SysUser oldSysUser = oldSysUserR.getData();
+            oldSysUser.setCommission(oldSysUser.getCommission().subtract(oldBizOrder.getOrderPrice()));
+            oldSysUser.setRealIncome(oldSysUser.getRealIncome().subtract(oldBizOrder.getOrderPrice().multiply(BigDecimal.valueOf(0.20))));
+            remoteUserService.updateSysUser(oldSysUser);
+
+        }
+
+        bizOrder.setUpdateTime(DateUtils.getNowDate());
         return bizOrderMapper.updateBizOrder(bizOrder);
     }
 
@@ -148,6 +219,7 @@ public class BizOrderServiceImpl implements IBizOrderService
     {
         return bizOrderMapper.deleteBizOrderByOrderId(orderId);
     }
+
     /**
      * 统计指定时间区间内的营业额数据
      * @param begin
@@ -167,7 +239,7 @@ public class BizOrderServiceImpl implements IBizOrderService
         }
 
         //存放每天的营业额
-        List<Double> turnoverList = new ArrayList<>();
+        List<BigDecimal> turnoverList = new ArrayList<>();
         for(LocalDate date:dateList){
             //查询date日期对应的营业额数据
             LocalDateTime beginTime = LocalDateTime.of(date, LocalTime.MIN);
@@ -177,8 +249,8 @@ public class BizOrderServiceImpl implements IBizOrderService
             Map map = new HashMap();
             map.put("begin", beginTime);
             map.put("end", endTime);
-            Double turnover = bizOrderMapper.orderSumByMap(map);
-            turnover = turnover == null ? 0.0 : turnover;
+            BigDecimal turnover = bizOrderMapper.orderSumByMap(map);
+            turnover = turnover == null ? BigDecimal.valueOf(0.0) : turnover;
             turnoverList.add(turnover);
         }
         //封装返回结果
@@ -190,7 +262,7 @@ public class BizOrderServiceImpl implements IBizOrderService
     }
 
     @Override
-    public OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end) {
+    public BizOrderReportVO getOrderStatistics(LocalDate begin, LocalDate end) {
         //当前集合用于存放从begin到end范围内的每天的日期
         List<LocalDate> dateList = new ArrayList<>();
 
@@ -201,7 +273,7 @@ public class BizOrderServiceImpl implements IBizOrderService
             dateList.add(begin);
         }
         //存放每天的订单总数
-        List<Integer> orderCountList = new ArrayList<>();
+        List<Double> orderCountList = new ArrayList<>();
 
         for(LocalDate date:dateList){
             //查询date日期对应的营业额数据
@@ -211,14 +283,14 @@ public class BizOrderServiceImpl implements IBizOrderService
             Map map = new HashMap();
             map.put("begin", beginTime);
             map.put("end", endTime);
-            Integer sumOrder = bizOrderMapper.orderCountByMap(map);
+            Double sumOrder = bizOrderMapper.orderCountByMap(map);
             sumOrder = sumOrder == null ? 0 : sumOrder;
             orderCountList.add(sumOrder);
         }
 
-        Integer totalOrderCount = orderCountList.stream().reduce(Integer::sum).get();
+        Double totalOrderCount = orderCountList.stream().reduce(Double::sum).get();
 
-        return  OrderReportVO
+        return  BizOrderReportVO
                 .builder()
                 .dateList(StringUtils.join(dateList,","))
                 .orderCountList(StringUtils.join(orderCountList,","))

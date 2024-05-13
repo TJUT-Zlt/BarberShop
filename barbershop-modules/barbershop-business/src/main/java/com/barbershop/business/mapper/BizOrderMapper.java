@@ -1,5 +1,6 @@
 package com.barbershop.business.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -66,13 +67,13 @@ public interface BizOrderMapper
      * @param map
      * @return
      */
-    public Double orderSumByMap(Map map);
+    public BigDecimal orderSumByMap(Map map);
 
     /**
      * 根据动态条件统计订单数量
      * @param map
      * @return
      */
-    public Integer orderCountByMap(Map map);
+    public Double orderCountByMap(Map map);
 
 }

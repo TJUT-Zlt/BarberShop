@@ -1,8 +1,9 @@
 package com.barbershop.business.service;
 
-import com.barbershop.business.vo.BizCustomerOverViewVO;
-import com.barbershop.business.vo.BusinessDataVO;
-import com.barbershop.business.vo.SysUserOverViewVO;
+import com.barbershop.business.domain.vo.overview.BizCustomerOverViewVO;
+import com.barbershop.business.domain.vo.overview.BizToolOverViewVO;
+import com.barbershop.business.domain.vo.overview.BusinessDataVO;
+import com.barbershop.business.domain.vo.overview.SysUserOverViewVO;
 
 import java.time.LocalDateTime;
 
@@ -28,4 +29,6 @@ public interface BizWorkspaceService {
      * @return
      */
     SysUserOverViewVO getSysUserOverView();
+
+    BizToolOverViewVO getBizToolOverView();
 }

@@ -2,10 +2,14 @@
   <div class="container">
     <h2 class="homeTitle">
       今日数据<i>{{ days[1] }}</i
-      ><span><router-link to="statistics">详细数据</router-link></span>
+      ><span><router-link to="statistics" style="color: red;">详细数据</router-link></span>
     </h2>
     <div class="overviewBox">
       <ul>
+        <li>
+          <p class="tit">总营业额</p>
+          <p class="num">¥ {{ overviewData.totalTurnover }} 元</p>
+        </li>
         <li>
           <p class="tit">营业额</p>
           <p class="num">¥ {{ overviewData.turnover }} 元</p>
@@ -98,7 +102,7 @@ export default{
 
     li {
       flex: 1;
-      background: #fffbf0;
+      background: #8ABFF5;
       border-radius: 4px;
       margin-left: 20px;
       padding: 20px;

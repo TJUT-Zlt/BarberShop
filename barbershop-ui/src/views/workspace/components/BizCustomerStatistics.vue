@@ -74,7 +74,7 @@ export default {
 
     li {
       flex: 1;
-      background: #fffbf0;
+      background: #8ABFF5;
       border-radius: 4px;
       margin-left: 20px;
       padding:20px;
@@ -84,7 +84,7 @@ export default {
       &.add {
         width: 100px;
         flex: none;
-        background: #FFC100;
+        background: #409EFF;
         border-radius: 4px;
         text-align: center;
         color: #333;

@@ -1,4 +1,4 @@
-package com.barbershop.business.vo;
+package com.barbershop.business.domain.vo.report;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 客户数据统计图表
+ */
 @Data
 @Builder
 @NoArgsConstructor

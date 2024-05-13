@@ -6,10 +6,13 @@
     <div class="homeMain">
        <!-- 客户总览 -->
        <BizCustomerStatistics :bizCustomerData="bizCustomerData" />
-        <!-- 员工总览 -->
-       <SysUserStatistics :sysUserData="sysUserData" />
+        <!-- 工具总览 -->
+      <BizToolStatistics :bizToolData="bizToolData" />
     </div>
-  
+    <div class="homeMain">
+        <!-- 员工总览 -->
+        <SysUserStatistics :sysUserData="sysUserData" />
+    </div>
   </div>
 </template>
 
@@ -18,6 +21,7 @@
 import { getBusinessData } from '@/api/business/BizOrder'
 import { getOverviewBizCustomer } from '@/api/business/BizCustomer'
 import { getOverviewSysUser } from '@/api/system/user'
+import { getOverviewBizTool } from '@/api/business/BizTool'
 
 
 // 营业数据
@@ -26,20 +30,23 @@ import Overview from './components/overview.vue'
 import BizCustomerStatistics from './components/BizCustomerStatistics.vue'
 //用户总览
 import SysUserStatistics from './components/SysUserStatistics.vue'
-
+//工具总览
+import BizToolStatistics from './components/BizToolStatistics.vue'
 
 export default {
   name: 'workspace',
   components: {
     Overview,
     BizCustomerStatistics,
-    SysUserStatistics
+    SysUserStatistics,
+    BizToolStatistics
   },
   data() {
     return {
       overviewData: {},   
       bizCustomerData: {},
-      sysUserData: {}
+      sysUserData: {},
+      bizToolData: {}
     }
   },
   created() {
@@ -50,6 +57,7 @@ export default {
       this.getBusinessData()
       this.getOverviewBizCustomer()
       this.getOverviewSysUser()
+      this.getOverviewBizTool()
     },
     // 获取营业数据
     async getBusinessData() {
@@ -68,6 +76,12 @@ export default {
     async getOverviewSysUser() {
     const data = await getOverviewSysUser()
     this.sysUserData = data.data
+    },
+
+    // 获取工具总览数据
+    async getOverviewBizTool() {
+    const data = await getOverviewBizTool()
+    this.bizToolData = data.data
     }
 
   },

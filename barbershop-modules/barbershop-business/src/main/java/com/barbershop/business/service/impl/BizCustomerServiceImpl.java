@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.barbershop.business.vo.BizCustomerReportVO;
+import com.barbershop.business.domain.vo.report.BizCustomerReportVO;
 import com.barbershop.common.core.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

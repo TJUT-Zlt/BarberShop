@@ -1,5 +1,6 @@
 package com.barbershop.system.api.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.*;
@@ -99,15 +100,15 @@ public class SysUser extends BaseEntity
 
     /** 薪水 */
     @Excel(name = "薪水")
-    private Double salary;
+    private BigDecimal salary;
 
     /** 提成 */
     @Excel(name = "提成")
-    private Double commission;
+    private BigDecimal commission;
 
     /** 实际收入 */
     @Excel(name = "实际收入")
-    private Double realIncome;
+    private BigDecimal realIncome;
 
     /** 员工状态(0在岗 1休假 2出差 3离职)  自定义字典类型数据 */
     @Excel(name = "员工状态", readConverterExp = "0=在岗,1=休假,2=出差,3=离职")
@@ -122,30 +123,30 @@ public class SysUser extends BaseEntity
     {
         return birthday;
     }
-    public void setSalary(Double salary)
+    public void setSalary(BigDecimal salary)
     {
         this.salary = salary;
     }
 
-    public Double getSalary()
+    public BigDecimal getSalary()
     {
         return salary;
     }
-    public void setCommission(Double commission)
+    public void setCommission(BigDecimal commission)
     {
         this.commission = commission;
     }
 
-    public Double getCommission()
+    public BigDecimal getCommission()
     {
         return commission;
     }
 
-    public Double getRealIncome() {
+    public BigDecimal getRealIncome() {
         return realIncome;
     }
 
-    public void setRealIncome(Double realIncome) {
+    public void setRealIncome(BigDecimal realIncome) {
         this.realIncome = realIncome;
     }
 

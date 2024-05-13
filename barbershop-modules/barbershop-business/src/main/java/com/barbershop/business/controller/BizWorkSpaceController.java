@@ -1,6 +1,6 @@
 package com.barbershop.business.controller;
 import com.barbershop.business.service.BizWorkspaceService;
-import com.barbershop.business.vo.BusinessDataVO;
+import com.barbershop.business.domain.vo.overview.BusinessDataVO;
 import com.barbershop.common.core.web.domain.AjaxResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.time.LocalTime;
 import static com.barbershop.common.core.web.domain.AjaxResult.success;
 
 /**
- * 工作台
+ * 首页 工作台
  */
 @RestController
 @RequestMapping("/BizWorkSpace")
@@ -56,6 +56,14 @@ public class BizWorkSpaceController {
         return success(bizWorkspaceService.getSysUserOverView());
     }
 
+    /**
+     * 查询工具总览
+     * @return
+     */
+    @GetMapping("/overviewBizTool")
+    public AjaxResult bizToolOverView(){
+        return success(bizWorkspaceService.getBizToolOverView());
+    }
 
 
 }

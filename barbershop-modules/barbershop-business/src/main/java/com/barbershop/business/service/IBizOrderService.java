@@ -3,10 +3,8 @@ package com.barbershop.business.service;
 import java.time.LocalDate;
 import java.util.List;
 import com.barbershop.business.domain.BizOrder;
-import com.barbershop.business.vo.OrderReportVO;
-import com.barbershop.business.vo.TurnoverReportVO;
-import com.barbershop.common.core.domain.R;
-import com.barbershop.system.api.domain.SysUser;
+import com.barbershop.business.domain.vo.report.BizOrderReportVO;
+import com.barbershop.business.domain.vo.report.TurnoverReportVO;
 
 /**
  * 订单管理Service接口
@@ -39,6 +37,13 @@ public interface IBizOrderService
      * @return 结果
      */
     public int insertBizOrder(BizOrder bizOrder);
+
+    /**
+     * 新增没有指定客户的订单管理
+     * @param bizOrder
+     * @return
+     */
+    public int insertBizOrderWithNoBizCustomer(BizOrder bizOrder);
 
     /**
      * 修改订单管理
@@ -79,6 +84,6 @@ public interface IBizOrderService
      * @param end
      * @return
      */
-    public OrderReportVO getOrderStatistics(LocalDate begin, LocalDate end);
+    public BizOrderReportVO getOrderStatistics(LocalDate begin, LocalDate end);
 
 }

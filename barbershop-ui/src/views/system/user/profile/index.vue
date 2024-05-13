@@ -40,8 +40,8 @@
                 <div class="pull-right">{{ user.commission }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="money" />实际收入(实际收入=基本工资+提成*20%)
-                <div class="pull-right">{{ user.realIncome }}</div>
+                <svg-icon icon-class="money"/>实际收入(实际收入=基本工资+提成*20%)
+                <div class="pull-right" style = "color: red ">{{ user.realIncome }}</div>
               </li>
 
               <li class="list-group-item">

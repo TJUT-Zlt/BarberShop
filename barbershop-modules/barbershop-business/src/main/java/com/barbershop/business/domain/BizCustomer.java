@@ -1,5 +1,6 @@
 package com.barbershop.business.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -48,11 +49,11 @@ public class BizCustomer extends BaseEntity
 
     /** 账号余额 */
     @Excel(name = "账号余额")
-    private Double customerAccountBalance;
+    private BigDecimal customerAccountBalance;
 
     /** 累计消费 */
     @Excel(name = "累计消费")
-    private Double cumulativeConsumption;
+    private BigDecimal cumulativeConsumption;
 
     /** 偏好 */
     @Excel(name = "偏好")
@@ -137,21 +138,21 @@ public class BizCustomer extends BaseEntity
     {
         return birthday;
     }
-    public void setCustomerAccountBalance(Double customerAccountBalance)
+    public void setCustomerAccountBalance(BigDecimal customerAccountBalance)
     {
         this.customerAccountBalance = customerAccountBalance;
     }
 
-    public Double getCustomerAccountBalance()
+    public BigDecimal getCustomerAccountBalance()
     {
         return customerAccountBalance;
     }
 
-    public Double getCumulativeConsumption() {
+    public BigDecimal getCumulativeConsumption() {
         return cumulativeConsumption;
     }
 
-    public void setCumulativeConsumption(Double cumulativeConsumption) {
+    public void setCumulativeConsumption(BigDecimal cumulativeConsumption) {
         this.cumulativeConsumption = cumulativeConsumption;
     }
 

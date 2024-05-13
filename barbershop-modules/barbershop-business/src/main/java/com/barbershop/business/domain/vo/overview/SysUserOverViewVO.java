@@ -1,6 +1,5 @@
-package com.barbershop.business.vo;
+package com.barbershop.business.domain.vo.overview;
 
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 首页 用户统计
+ */
 @Data
 @Builder
 @NoArgsConstructor

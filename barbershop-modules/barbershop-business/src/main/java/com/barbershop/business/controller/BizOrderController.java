@@ -5,11 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.barbershop.business.service.IBizCustomerService;
-import com.barbershop.business.vo.OrderReportVO;
-import com.barbershop.business.vo.TurnoverReportVO;
 import com.barbershop.common.core.utils.StringUtils;
 import com.barbershop.system.api.RemoteUserService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +46,7 @@ public class BizOrderController extends BaseController
     private RemoteUserService remoteUserService;
 
     /**
-     * 查询订单管理列表
+     * 查询订单列表
      */
     @RequiresPermissions("business:BizOrder:list")
     @GetMapping("/list")
@@ -61,7 +58,7 @@ public class BizOrderController extends BaseController
     }
 
     /**
-     * 导出订单管理列表
+     * 导出订单列表
      */
     @RequiresPermissions("business:BizOrder:export")
     @Log(title = "订单管理", businessType = BusinessType.EXPORT)
@@ -74,7 +71,7 @@ public class BizOrderController extends BaseController
     }
 
     /**
-     * 获取订单管理详细信息
+     * 获取订单详细信息
      */
     @RequiresPermissions("business:BizOrder:query")
     @GetMapping(value = {"/", "/{orderId}"})
@@ -89,21 +86,38 @@ public class BizOrderController extends BaseController
     }
 
     /**
-     * 新增订单管理
+     * 新增订单
      */
     @RequiresPermissions("business:BizOrder:add")
     @Log(title = "订单管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody BizOrder bizOrder)
     {
-        if(bizOrderService.insertBizOrder(bizOrder) < 0){
+        int result = bizOrderService.insertBizOrder(bizOrder);
+        if(result < 0) {
             return AjaxResult.error("该客户账户余额不足");
+        }else {
+            return  toAjax(result);
         }
-        return toAjax(bizOrderService.insertBizOrder(bizOrder));
+
     }
 
     /**
-     * 修改订单管理
+     * 新增没有指定客户的订单
+     * @param bizOrder
+     * @return
+     */
+    @RequiresPermissions("business:BizOrder:addWithNoBizCustomer")
+    @Log(title = "没有指定客户的订单管理", businessType = BusinessType.INSERT)
+    @PostMapping("/addWithNoBizCustomer")
+    public AjaxResult addWithNoBizCustomer(@RequestBody BizOrder bizOrder)
+    {
+        return toAjax(bizOrderService.insertBizOrderWithNoBizCustomer(bizOrder));
+    }
+
+
+    /**
+     * 修改订单
      */
     @RequiresPermissions("business:BizOrder:edit")
     @Log(title = "订单管理", businessType = BusinessType.UPDATE)
@@ -114,7 +128,7 @@ public class BizOrderController extends BaseController
     }
 
     /**
-     * 删除订单管理
+     * 删除订单
      */
     @RequiresPermissions("business:BizOrder:remove")
     @Log(title = "订单管理", businessType = BusinessType.DELETE)

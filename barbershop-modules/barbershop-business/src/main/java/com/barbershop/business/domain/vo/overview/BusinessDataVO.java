@@ -1,26 +1,29 @@
-package com.barbershop.business.vo;
+package com.barbershop.business.domain.vo.overview;
 
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-
+/**
+ * 首页 今日数据统计
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BusinessDataVO implements Serializable {
 
+    private BigDecimal totalTurnover; // 总营业额
 
-    private Double turnover;//营业额
+    private BigDecimal turnover;//营业额
 
-    private Double unitPrice;//平均客单价
+    private BigDecimal unitPrice;//平均客单价
 
-    private Integer orderNum;//订单数
+    private Double orderNum;//订单数
 
     private Integer newBizCustomers;//新增客户数
 

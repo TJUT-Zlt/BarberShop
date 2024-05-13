@@ -3,7 +3,7 @@ package com.barbershop.business.service;
 import java.time.LocalDate;
 import java.util.List;
 import com.barbershop.business.domain.BizCustomer;
-import com.barbershop.business.vo.BizCustomerReportVO;
+import com.barbershop.business.domain.vo.report.BizCustomerReportVO;
 
 /**
  * 客户管理Service接口

@@ -1,18 +1,22 @@
 package com.barbershop.business.service.impl;
 
+import com.barbershop.business.domain.vo.overview.BizToolOverViewVO;
 import com.barbershop.business.mapper.BizCustomerMapper;
 import com.barbershop.business.mapper.BizOrderMapper;
+import com.barbershop.business.mapper.BizToolMapper;
 import com.barbershop.business.service.BizWorkspaceService;
-import com.barbershop.business.vo.BizCustomerOverViewVO;
-import com.barbershop.business.vo.BusinessDataVO;
+import com.barbershop.business.domain.vo.overview.BizCustomerOverViewVO;
+import com.barbershop.business.domain.vo.overview.BusinessDataVO;
 
-import com.barbershop.business.vo.SysUserOverViewVO;
+import com.barbershop.business.domain.vo.overview.SysUserOverViewVO;
 import com.barbershop.common.core.domain.R;
 import com.barbershop.system.api.RemoteUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +32,10 @@ public class BizWorkspaceServiceImpl implements BizWorkspaceService {
 
     @Autowired
     private RemoteUserService remoteUserService;
+
+    @Autowired
+    private BizToolMapper bizToolMapper;
+
     /**
      * 根据时间段统计营业数据
      * @param begin
@@ -42,28 +50,32 @@ public class BizWorkspaceServiceImpl implements BizWorkspaceService {
          */
 
         Map map = new HashMap();
+
+        //总营业额
+        BigDecimal totalTurnover= bizOrderMapper.orderSumByMap(map);
+
         map.put("begin",begin);
         map.put("end",end);
 
         //查询总订单数
-        Integer totalOrderCount = bizOrderMapper.orderCountByMap(map);
+        Double totalOrderCount = bizOrderMapper.orderCountByMap(map);
 
         //营业额
-        Double turnover = bizOrderMapper.orderSumByMap(map);
-        turnover = turnover == null? 0.0 : turnover;
+        BigDecimal turnover = bizOrderMapper.orderSumByMap(map);
+        turnover = turnover == null? BigDecimal.ZERO: turnover;
 
-        Double unitPrice = 0.0;
+        BigDecimal unitPrice = BigDecimal.ZERO;
 
         if(totalOrderCount != 0 ){
-
             //平均客单价
-            unitPrice =  turnover / totalOrderCount;
+            unitPrice = turnover.divide(BigDecimal.valueOf(totalOrderCount), 2, RoundingMode.HALF_UP); // 保留两位小数并四舍五入
         }
 
         //新增用户数
         Integer newBizCustomers = bizCustomerMapper.countByMap(map);
 
         return BusinessDataVO.builder()
+                .totalTurnover(totalTurnover)
                 .turnover(turnover)
                 .unitPrice(unitPrice)
                 .orderNum(totalOrderCount)
@@ -102,6 +114,25 @@ public class BizWorkspaceServiceImpl implements BizWorkspaceService {
                 .onLeaveSysUsers(onLeaveSysUsers)
                 .businessSysUsers(businessSysUsers)
                 .departSysUsers(departSysUsers)
+                .build();
+    }
+
+    @Override
+    public BizToolOverViewVO getBizToolOverView() {
+        Map map = new HashMap();
+        map.put("toolStatus", 0);
+        Integer normalBizTools = bizToolMapper.countByMap(map);
+
+        map.put("toolStatus", 1);
+        Integer repairBizTools = bizToolMapper.countByMap(map);
+
+        map.put("toolStatus", 2);
+        Integer scrapBizTools = bizToolMapper.countByMap(map);
+
+        return BizToolOverViewVO.builder()
+                .normalBizTools(normalBizTools)
+                .repairBizTools(repairBizTools)
+                .scrapBizTools(scrapBizTools)
                 .build();
     }
 

@@ -28,6 +28,15 @@ export function addBizOrder(data) {
   })
 }
 
+// 新增没有指定客户的订单管理
+export function addBizOrderWithNoBizCustomer(data) {
+  return request({
+    url: '/business/BizOrder/addWithNoBizCustomer',
+    method: 'post',
+    data: data
+  })
+}
+
 // 修改订单管理
 export function updateBizOrder(data) {
   return request({

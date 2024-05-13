@@ -42,3 +42,11 @@ export function delBizTool(toolId) {
     method: 'delete'
   })
 }
+
+// 客户总览
+export function getOverviewBizTool(){
+  return request({
+    url: '/business/BizWorkSpace/overviewBizTool',
+    method: 'get'
+})
+}

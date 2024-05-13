@@ -34,6 +34,20 @@
           />
         </el-select>
       </el-form-item>
+
+      <el-form-item label="创建时间">
+            <el-date-picker
+              v-model="dateRange"
+              style="width: 240px"
+              value-format="yyyy-MM-dd"
+              type="daterange"
+              range-separator="-"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+            ></el-date-picker>
+      </el-form-item>
+
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -49,8 +63,18 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['business:BizOrder:add']"
-        >新增</el-button>
+        >新增(系统内已存在/或不存在客户)</el-button>
       </el-col>
+      <!-- <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handleAddWithNoBizCustomer"
+          v-hasPermi="['business:BizOrder:addWithNoBizCustomer']"
+        >新增(系统内不存在客户)</el-button>
+      </el-col> -->
       <el-col :span="1.5">
         <el-button
           type="success"
@@ -60,7 +84,7 @@
           :disabled="single"
           @click="handleUpdate"
           v-hasPermi="['business:BizOrder:edit']"
-        >修改</el-button>
+        >修改(不允许修改客户信息)</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -208,7 +232,7 @@
 </template>
 
 <script>
-import { listBizOrder, getBizOrder, delBizOrder, addBizOrder, updateBizOrder,bizCustomerListSelect,sysUserListSelect } from "@/api/business/BizOrder";
+import { listBizOrder, getBizOrder, delBizOrder, addBizOrder,addBizOrderWithNoBizCustomer, updateBizOrder,bizCustomerListSelect,sysUserListSelect } from "@/api/business/BizOrder";
 
 export default {
   name: "BizOrder",
@@ -234,6 +258,9 @@ export default {
       // 是否显示弹出层
       open: false,
 
+      // 日期范围
+      dateRange: [],
+
       //客户选项
       bizCustomerOptions:[],
       //用户选项
@@ -255,9 +282,9 @@ export default {
         userId: [
           { required: true, message: "服务人员ID不能为空", trigger: "blur" }
         ],
-        customerId: [
-          { required: true, message: "客户ID不能为空", trigger: "blur" }
-        ],
+        // customerId: [
+        //   { required: true, message: "客户ID不能为空", trigger: "blur" }
+        // ],
         orderPrice: [
           { required: true, message: "服务价格不能为空", trigger: "blur" }
         ],
@@ -283,11 +310,10 @@ export default {
         this.sysUserOptions = response.data.data;
       });
     },
-
     /** 查询订单管理列表 */
     getList() {
       this.loading = true;
-      listBizOrder(this.queryParams).then(response => {
+      listBizOrder(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
         this.BizOrderList = response.rows;
         this.total = response.total;
         this.loading = false;
@@ -321,6 +347,7 @@ export default {
     },
     /** 重置按钮操作 */
     resetQuery() {
+      this.dateRange = [];
       this.resetForm("queryForm");
       this.handleQuery();
     },
@@ -335,7 +362,15 @@ export default {
       this.reset();
       getBizOrder().then(response => {
         this.open = true;
-        this.title = "添加订单管理";
+        this.title = "添加订单(系统内已存在客户)";
+      });
+    },
+    /** 新增(系统内不存在客户)按钮操作 */
+    handleAddWithNoBizCustomer() {
+      this.reset();
+      getBizOrder().then(response => {
+        this.open = true;
+        this.title = "添加订单(系统内不存在客户)";
       });
     },
     /** 修改按钮操作 */
@@ -345,7 +380,7 @@ export default {
       getBizOrder(orderId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改订单管理";
+        this.title = "修改订单(不允许修改客户信息)";
       });
     },
     /** 提交按钮 */
@@ -359,11 +394,19 @@ export default {
               this.getList();
             });
           } else {
-            addBizOrder(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
+            if(this.form.customerId != null){
+              addBizOrder(this.form).then(response => {
+              this.$modal.msgSuccess("新增(系统内已存在客户)成功");
               this.open = false;
               this.getList();
-            });
+              });
+            }else{
+              addBizOrderWithNoBizCustomer(this.form).then(response => {
+              this.$modal.msgSuccess("新增(系统内不存在客户)成功");
+              this.open = false;
+              this.getList();
+              });
+            }
           }
         }
       });

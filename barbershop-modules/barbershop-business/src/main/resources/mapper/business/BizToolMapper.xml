@@ -108,9 +108,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-    <select id="selectSysToolByToolStatus" resultType="java.lang.Integer">
+
+    <select id="countByMap" resultType="java.lang.Integer">
         select count(tool_id) from biz_tool
-		where tool_status = #{toolStatus}
+        <where>
+            <if test="toolStatus != null">
+                and tool_status = #{toolStatus}
+            </if>
+        </where>
     </select>
 
 </mapper>

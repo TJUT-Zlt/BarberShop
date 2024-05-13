@@ -88,6 +88,11 @@ export const constantRoutes = [
         path: "SysUser",
         component: () =>import( "@/views/system/user/index.vue"),
         hidden: true,
+      },
+      {
+        path: "BizTool",
+        component: () =>import( "@/views/business/BizTool/index.vue"),
+        hidden: true,
       }
 
     ]

@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.barbershop.common.core.annotation.Excel;
 import com.barbershop.common.core.web.domain.BaseEntity;
 
+import java.math.BigDecimal;
+
 /**
  * 订单管理对象 biz_order
  * 
@@ -33,7 +35,7 @@ public class BizOrder extends BaseEntity
 
     /** 服务价格 */
     @Excel(name = "服务价格")
-    private Double orderPrice;
+    private BigDecimal orderPrice;
 
     private SysUser sysUser;
 
@@ -76,12 +78,12 @@ public class BizOrder extends BaseEntity
     {
         return orderType;
     }
-    public void setOrderPrice(Double orderPrice)
+    public void setOrderPrice(BigDecimal orderPrice)
     {
         this.orderPrice = orderPrice;
     }
 
-    public Double getOrderPrice()
+    public BigDecimal getOrderPrice()
     {
         return orderPrice;
     }

@@ -62,11 +62,12 @@ public interface BizToolMapper
      */
     public int deleteBizToolByToolIds(Long[] toolIds);
 
+
+
     /**
-     * 查询工具总览
-     * @param toolStatus
+     * 根据动态条件统计工具数量
+     * @param map
      * @return
      */
-    public Integer selectSysToolByToolStatus(char toolStatus);
-
+    public Integer countByMap(Map map);
 }
